@@ -51,7 +51,8 @@ WHEN I select the food item
 THEN its calories and nutrional values are displayed and its calories are added to my total calorie intake
 ```
 
-![Screen Shot 2023-02-28 at 9 48 17 PM](https://user-images.githubusercontent.com/122922799/222032442-915c6488-c31f-4fa4-818c-954d24d76c6b.png)
+![Screen Shot 2023-02-28 at 9 48 27 PM](https://user-images.githubusercontent.com/122922799/222032766-c28b32e5-7a3f-4384-9997-e9b07ce81b6f.png)
+
 
 ![Screen Shot 2023-02-28 at 9 48 19 PM](https://user-images.githubusercontent.com/122922799/222032463-7fee02f6-895e-462a-8e06-80bce1b76d61.png)
 
