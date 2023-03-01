@@ -25,4 +25,4 @@ THEN its calories and nutrional values are displayed and its calories are added 
 ```
 
 
-
+![LINK TO GOOGLE SLIDES](https://docs.google.com/presentation/d/1OaybJrXOqLP9ju2aTWSrjFsAv2YfTOgqw7C0iW0GyYQ/edit)
