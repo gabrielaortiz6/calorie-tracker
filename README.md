@@ -1,2 +1,28 @@
-# calorie-tracker
-Tracks nutritional values and calories of food using Nutritionix and has settings to translate page content to various different languages for accessibility
+#  Calorie Tracker
+
+## Description
+
+## User Story
+
+```
+ AS a user
+ I WANT to track the calories and nutrional values of the food I eat 
+ SO THAT I can keep track of nutrional goals
+ ```
+
+## Acceptance Criteria
+
+```
+GIVEN the need for wider accessibility
+WHEN I open the application
+THEN there is an option to select the language of choice
+WHEN I search for/input a food item
+THEN I am presented with nutrional values of the food I choose
+WHEN I select the food item
+THEN the food item is stored
+WHEN I select the food item
+THEN its calories and nutrional values are displayed and its calories are added to my total calorie intake
+```
+
+
+
