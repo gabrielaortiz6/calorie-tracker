@@ -10,6 +10,12 @@
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="./assets/css/style.css" />
+	<!--DayJS-->
+	<script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
 	<title>Calorie Tracker </title>
 </head>
 
@@ -24,9 +30,9 @@
 	<div class="container">
 		<h2>Hi! Whats Your name? </h2>
 		<form>
-			<input type="text" id="name" name="name" placeholder="enter name">
+			<input type="text" id="name" name="name" placeholder="enter name" required>
 		</form>
-			<button type="submit" form="form1" value="Submit">Click to start tracking</button>
+			<button type="submit" form="form1" id="submit-btn" value="Submit">Click to start tracking</button>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
