@@ -7,6 +7,13 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="./assets/css/style.css" />
+	<!--DayJS-->
+	<script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
 	<script src="https://cdn.tailwindcss.com" rel="stylesheet tailwind"></script>
 	<link rel="stylesheet" href="./assets/stylesheet.css" />
 	<title>Calorie Tracker </title>
@@ -20,6 +27,13 @@
 	<p id="currentDay" class="date text-5xl"></p>
 </header>
 
+	<div class="container">
+		<h2>Hi! Whats Your name? </h2>
+		<form>
+			<input type="text" id="name" name="name" placeholder="enter name" required>
+		</form>
+			<button type="submit" form="form1" id="submit-btn" value="Submit">Click to start tracking</button>
+	</div>
 <div class="container flex justify-center items-center w-full h-full mx-auto flex-col ">
 	<h2 class="text-4xl m-2 ">Hi! What's Your name? </h2>
 	<form>
