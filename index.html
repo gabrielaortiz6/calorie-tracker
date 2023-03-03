@@ -5,9 +5,8 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="./assets/css/style.css" />
 	<!--DayJS-->
@@ -16,16 +15,18 @@
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"
     ></script>
+	<script src="https://cdn.tailwindcss.com" rel="stylesheet tailwind"></script>
+	<link rel="stylesheet" href="./assets/stylesheet.css" />
 	<title>Calorie Tracker </title>
 </head>
+<body id="text-center">
 
-<body>
-	<!-- Header -->
-	<header class="hero">
-		<h1 class="display-3">Calorie Tracker</h1>
-		<!--Current date display-->
-		<p id="currentDay" class="date"></p>
-	</header>
+<!-- Header -->
+<header class="hero">
+	<h1 class="display-3 text-8xl" id="textshadow">Calorie Tracker</h1>
+	<!--Current date display-->
+	<p id="currentDay" class="date text-5xl"></p>
+</header>
 
 	<div class="container">
 		<h2>Hi! Whats Your name? </h2>
@@ -34,6 +35,13 @@
 		</form>
 			<button type="submit" form="form1" id="submit-btn" value="Submit">Click to start tracking</button>
 	</div>
+<div class="container flex justify-center items-center w-full h-full mx-auto flex-col ">
+	<h2 class="text-4xl m-2 ">Hi! What's Your name? </h2>
+	<form>
+	  <input class="text-center text-2xl p-3 m-2" type="text" id="name" name="name" placeholder="Enter name here">
+	</form>
+	<button type="submit" form="form1" value="Submit" class="border-solid border-4 border-purple-900 rounded-lg bg-violet-900 text-slate-200 m-4 p-3 text-3xl">Begin tracking</button>
+</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
