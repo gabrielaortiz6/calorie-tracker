@@ -17,29 +17,131 @@
     <link href="./assets/css/mainstyle.css" rel="stylesheet">
     <title>Food Intake</title>
   </head>
-  <header>
+  <!--Header-->
+  <header class="flex justify-between p-10">
     <h2>Users Name</h2>
+    <div class="inline exercise-btn">
+      <!--Button that takes you Exercise Input (Main) Page-->
+    <a href="exercise.html"><button class="inline bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="add-calorie-btn">Add Calories</button></a>
+  </div>
   </header>
 
   <body>
-    <div class="select-occasion">
-      <h3>Select the occasion</h3>
+    <form class="select-meal-type flex flex-col justify-center items-center">
+      <!--Select Type of Meal-->
+      <label for="meal-type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Select a type of meal</h3></label>
+      <select id="meal-type" class="max-w-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option selected>Choose the type of meal</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snack">Snack</option>
+      </select>
+      <!--Input Food-->
+      <div class="block mb-6 pt-16">
+       <label for="food-input" class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Enter food:</h3></label>
+        <input type="text" id="food-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    </div>
+      <!--Submit Button-->
+      <button class="max-w-md mb-2 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="submit-btn">
+        Select
+      </button>
+    </form>
+
+    <!--Tailwind styled grid for user inputs to be displayed-->
+    <div class="food-list">
+      <div class="container my-12 mx-auto px-4 md:px-12">
+        <div class="flex flex-wrap -mx-1 lg:-mx-4">
+
+            <!-- Column -->
+            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
+    
+                <!-- Article -->
+                <article class="overflow-hidden rounded-lg shadow-lg">
+                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                        <h3 class="text-lg" id="breakfast-group">
+                              Breakfast:
+                        </h3>
+                    </header>
+                    <div class="p-2 md:p-4">
+                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      <li>Food Item 1</li>
+                    </ul>
+                  </div>
+                </article>
+                <!-- END Article -->
+    
+            </div>
+            <!-- END Column -->
+    
+            <!-- Column -->
+            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
+    
+              <!-- Article -->
+              <article class="overflow-hidden rounded-lg shadow-lg">
+                  <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                      <h3 class="text-lg" id="lunch-group">
+                            Lunch:
+                      </h3>
+                  </header>
+                  <div class="p-2 md:p-4">
+                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <li>Food Item 1</li>
+                  </ul>
+                </div>
+              </article>
+              <!-- END Article -->
+  
+          </div>
+          <!-- END Column -->
+
+             <!-- Column -->
+             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
+    
+              <!-- Article -->
+              <article class="overflow-hidden rounded-lg shadow-lg">
+                  <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                      <h3 class="text-lg" id="dinner-group">
+                            Dinner:
+                      </h3>
+                  </header>
+                  <div class="p-2 md:p-4">
+                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <li>Food Item 1</li>
+                  </ul>
+                </div>
+              </article>
+              <!-- END Article -->
+  
+          </div>
+          <!-- END Column -->
+    
+             <!-- Column -->
+             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
+    
+              <!-- Article -->
+              <article class="overflow-hidden rounded-lg shadow-lg">
+                  <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                      <h3 class="text-lg" id="snack-group">
+                            Snack:
+                      </h3>
+                  </header>
+                  <div class="p-2 md:p-4">
+                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <li>Food Item 1</li>
+                  </ul>
+                </div>
+              </article>
+              <!-- END Article -->
+  
+          </div>
+          <!-- END Column -->
+        </div>
     </div>
 
-    <div class="exercise-btn">
-      <!-- <button>Add Excercise</button> -->
-      <a href="exercise.html">Add Exercise</a>
-    </div>
-
-    <section class="occasion">
-      <div class="breakfast">Breakfast:</div>
-      <div class="lunch">Lunch:</div>
-      <div class="dinner">Dinner:</div>
-      <div class="Snacks">Snacks:</div>
-    </section>
-
-    <div class="daily-totals">Daily totals:</div>
-
+    <div class="daily-totals">
+      <h4>Daily Totals:</h4>
+      </div>
     <section class="macros">
       <div>Protein:</div>
       <div>Carbs:</div>
@@ -49,7 +151,4 @@
 
     <script src="./assets/js/script.js"></script>
   </body>
-  <footer>
-    <div></div>
-  </footer>
 </html>
