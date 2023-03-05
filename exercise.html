@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+      <!--DayJS-->
+      <script
+          src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+          integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+          crossorigin="anonymous"
+        ></script>
+  <!--Tailwind CDN-->
+  <script src="https://cdn.tailwindcss.com" rel="stylesheet tailwind"></script>
+  <link rel="stylesheet" href="./assets/css/stylesheet.css" />
+  <title>Exercises</title>
+</head>
+<!--Header-->
+<header>
+  <h1>Users Name</h1>
+  <!--Button that takes you back to Calorie Input (Main) Page-->
+  <div>
+    <a href="mainpage.html"><button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow float-right" id="add-calorie-btn">Add Calories</button></a>
+  </div>
+</header>
+<!--Tailwind Form-->
+<div class="w-full max-w-xs">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <!--Input for type of activity -->
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="exercise-input">
+        Add Exercise
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="exercise-input" type="text" placeholder="Enter exercise activity" required>
+    </div>
+    <!--Input for time spent exercising (has to be minutes - figure out how to handle that in JS)-->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="duration-input">
+        Duration of Exercise
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="duration-input" type="text" placeholder="Duration of exercise in minutes">
+    </div>
+    <div class="flex items-center justify-between">
+      <!--Submit Button for Form-->
+      <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="submit-btn">
+        Submit
+      </button>
+    </div>
+  </form>
+<!--Tailwind Table for exercise list to display-->
+  <div class="ex-list">
+    <h3>Exercise List:</h3>
+    <div class="table-auto relative overflow-x-auto shadow-md   sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <!--Header of Table-->
+            <th scope="col" class="px-6 py-3">
+              Activity
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Duration (in minutes)
+            </th>
+          </tr>
+        </thead>
+        <!--This is just filler text so we can see where the data retreived must display-->
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              Exercise
+            </th>
+            <td class="px-6 py-4">
+              Duration
+            </td>
+            <td class="px-6 py-4 text-right">
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="daily-totals flex justify-center">Daily totals:</div>
+  <section class="macros flex justify-center">
+    <div class="inline">Protein:</div>
+    <div class="inline">Carbs:</div>
+    <div class="inline">Fats:</div>
+    <div class="inline">Calories:</div>
+  </section>
+
+  <body>
+    <script src="./assets/js/exercise.js"></script>
+  </body>
+
+</html>
