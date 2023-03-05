@@ -38,3 +38,43 @@
   display: flex;
   justify-content: center;
 }
+
+
+
+@media screen and (min-width: 450px) {
+  /* Styles for screens 450px and up */
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  .text-8xl {
+    font-size: 6rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Styles for screens 768px and up */
+  .container {
+    max-width: 992px;
+  }
+  .text-8xl {
+    font-size: 7rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  /* Styles for screens 992px and up */
+  .container {
+    max-width: 1200px;
+  }
+  .text-8xl {
+    font-size: 8rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  /* Styles for screens up to 450px */
+  .text-8xl {
+    font-size: 4rem;
+  }
+}
