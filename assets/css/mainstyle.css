@@ -1,32 +1,21 @@
-* {
+ * {
   padding: 0;
   margin: 0;
   background-color: white;
 }
 
+
+#food-input,
+#meal-type {
+  width: 20rem;
+}
+
 .occasion {
   display: flex;
   justify-content: center;
-  margin: 250px;
   border-radius: 1px;
   border: solid 2px black;
   padding: 10px;
-}
-
-.select-occasion {
-  display: flex;
-  justify-content: center;
-}
-
-.excercise {
-  display: flex;
-  justify-content: end;
-  align-items: end;
-}
-
-.excercise-btn {
-  display: flex;
-  justify-content: end;
 }
 
 .macros {
@@ -38,8 +27,6 @@
   display: flex;
   justify-content: center;
 }
-
-
 
 @media screen and (min-width: 450px) {
   /* Styles for screens 450px and up */
