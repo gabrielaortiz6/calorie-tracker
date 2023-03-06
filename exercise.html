@@ -15,50 +15,39 @@
         ></script>
   <!--Tailwind CDN-->
   <script src="https://cdn.tailwindcss.com" rel="stylesheet tailwind"></script>
-  <link rel="stylesheet" href="./assets/css/stylesheet.css" />
+  <link rel="stylesheet" href="./assets/css/exercise.css" /> 
   <title>Exercises</title>
 </head>
 <!--Header-->
-<header>
+<header class="flex justify-between p-10">
   <h1>Users Name</h1>
   <!--Button that takes you back to Calorie Input (Main) Page-->
   <div>
-    <a href="mainpage.html"><button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow float-right" id="add-calorie-btn">Add Calories</button></a>
+    <a href="mainpage.html"><button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="add-calorie-btn">Add Calories</button></a>
   </div>
 </header>
 <!--Tailwind Form-->
-<div class="w-full max-w-xs">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <!--Input for type of activity -->
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="exercise-input">
-        Add Exercise
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="exercise-input" type="text" placeholder="Enter exercise activity" required>
-    </div>
-    <!--Input for time spent exercising (has to be minutes - figure out how to handle that in JS)-->
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="duration-input">
-        Duration of Exercise
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="duration-input" type="text" placeholder="Duration of exercise in minutes">
-    </div>
-    <div class="flex items-center justify-between">
-      <!--Submit Button for Form-->
-      <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="submit-btn">
-        Submit
-      </button>
-    </div>
-  </form>
+<body class="flex flex-col">
+<form class="exercise-form flex flex-col justify-center items-center">
+  <!--Enter Exercise-->
+  <label for="exercise-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Add Exercise: </h3></label>
+  <input id="exercise-input" type="text" placeholder="Enter exercise activity" required class="max-w-xs p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</input>
+  <!--Enter Duration of Exercise-->
+  <div class="block mb-6 pt-4">
+   <label for="duration-input" class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Duration (in minutes): </h3></label>
+    <input type="text" id="duration-input" placeholder="Duration of exercise" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+</div>
+  <!--Submit Button-->
+  <button class="max-w-md mb-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="exercise-btn">
+    Submit
+  </button>
+</form>
+  
 <!--Tailwind Table for exercise list to display-->
-  <div class="ex-list">
-    <h3>Exercise List:</h3>
-    <div class="table-auto relative overflow-x-auto shadow-md   sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <div class="exercise-list mt-4 mb-8 w-1/2">
+    <div class="exercise-list relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <!--Header of Table-->
@@ -79,9 +68,6 @@
             <td class="px-6 py-4">
               Duration
             </td>
-            <td class="px-6 py-4 text-right">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -95,8 +81,6 @@
     <div class="inline">Fats:</div>
     <div class="inline">Calories:</div>
   </section>
-
-  <body>
     <script src="./assets/js/exercise.js"></script>
   </body>
 

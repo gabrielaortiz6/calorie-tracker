@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.exercise-list {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: auto;
+}
