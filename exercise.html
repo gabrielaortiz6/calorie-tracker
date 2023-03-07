@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Font-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
@@ -30,12 +31,12 @@
 <body class="flex flex-col">
 <form class="exercise-form flex flex-col justify-center items-center">
   <!--Enter Exercise Input-->
-  <label for="exercise-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Add Exercise: </h3></label>
+  <label for="exercise-input" class="block mb-2 font-semibold text-gray-900 dark:text-white"><h3>Add Exercise: </h3></label>
   <input id="exercise-input" type="text" placeholder="Enter exercise activity" required class="max-w-xs p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 </input>
   <!--Enter Duration of Exercise Input-->
   <div class="block mb-6 pt-4">
-   <label for="duration-input" class="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Duration (in minutes): </h3></label>
+   <label for="duration-input" class="text-center font-semibold block mb-2 text-gray-900 dark:text-white"><h3>Duration (in minutes): </h3></label>
     <input type="text" id="duration-input" placeholder="Duration of exercise" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 </div>
   <!--Submit Button-->
@@ -47,7 +48,7 @@
 <!--Tailwind Table for exercise list to display-->
   <div class="exercise-list mt-4 mb-8 w-1/2">
     <div class="exercise-list relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table id="exercise-table" class="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <!--Header of Table-->
@@ -57,18 +58,14 @@
             <th scope="col" class="px-6 py-3">
               Duration (in minutes)
             </th>
+            <th scope="col" class="px-6 py-3">
+              Calories Burned
+            </th>
           </tr>
         </thead>
         <!--This is just filler text so we can see where the data retreived must display-->
-        <tbody>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              Exercise
-            </th>
-            <td class="px-6 py-4">
-              Duration
-            </td>
-          </tr>
+        <tbody class="table-body">
+          <!--Insert user inputs here-->
         </tbody>
       </table>
     </div>
