@@ -3,9 +3,30 @@
     padding: 0;
 }
 
+h3 {
+    font-size: 32px;
+}
+
+td {
+    padding: 1rem;
+    text-transform: capitalize;
+    font-size: 14px;
+    text-align: center;
+}
+
+th {
+    font-size: 16px;
+}
+
 .exercise-list {
     display: flex;
     justify-content: center;
     justify-items: center;
     margin: auto;
+}
+
+#exercise-table {
+    width: 60rem;
+    height: auto;
+    text-align: center;
 }

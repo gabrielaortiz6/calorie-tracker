@@ -1,70 +1,115 @@
 // API key for calories burned API
-var exerciseAPIKey = 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q';
+//var exerciseAPIKey = 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q';
 var userExerciseInput = $('#exercise-input');
 var userDurationInput = $('#duration-input');
 var submitExerciseBtn = $('#exercise-btn');
-
+var exerciseTable = document.querySelector('#exercise-table');
+var tableBody = $('.table-body');
+//empty variables
+var caloriesBurned = "";
 //empty array of objects in order to store exercise and duration inputs
 var exercisesArray = [];
 
-//function for retrieving user input from storage
-function retrieveStorage() {
+$(document).ready(function () {
 
-    var storedData = JSON.parse(localStorage.getItem("user inputs"));
+    //function for retrieving user input from storage
+    function retrieveStorage() {
 
-    //if there is something to retrieve in local storage, make it the value of a variable
-    if (storedData !== null) {
-        exercisesArray = storedData;
+        //retrieves stored user inputs and parses them
+        var storedData = JSON.parse(localStorage.getItem("user inputs"));
+
+        //if there is something to retrieve in local storage, make it the value of exercise array
+        if (storedData !== null) {
+            exercisesArray = storedData;
+        };
+
+        //loop through each object in the exercisesArray
+        exercisesArray.forEach((obj) => {
+
+            // Create a new table row
+            var newRow = document.createElement('tr');
+            newRow.classList.add("table-row");
+            var exerciseCell = document.createElement('td');
+            var durationCell = document.createElement('td');
+            var caloriesBurnedCell = document.createElement('td')
+            caloriesBurnedCell.classList.add('calories-burned');
+
+            // Add the data from local storage to the new row
+            exerciseCell.textContent = obj.exercise;
+            durationCell.textContent = obj.duration;
+            caloriesBurnedCell.textContent = "";
+
+            //Append text content to new row
+            newRow.appendChild(exerciseCell);
+            newRow.appendChild(durationCell);
+            newRow.appendChild(caloriesBurnedCell);
+
+            // Check if the data is already in the table (source: Stack Overflow)
+            var exerciseInTable = Array.from(exerciseTable.querySelectorAll('td:first-child'))
+                .map((cell) => cell.textContent)
+                .includes(obj.exercise);
+
+            // Skip adding the data if it already exists
+            if (exerciseInTable) {
+                return;
+            }
+            // Append the new row to the table
+            exerciseTable.appendChild(newRow);
+        });
     };
 
-    console.log(exercisesArray);
-};
+//function to append fetched data to table
+    function appendCaloriesBurned (data) {
 
-//function for processing and storing the inputs
-function processInput(event) {
-event.preventDefault();
+        //target cells we created
+        var caloriesBurnedCell = $('.calories-burned');
 
-//var exercise and var duration are the values of user inputs
-var exercise = userExerciseInput.val();
-var duration = userDurationInput.val();
+        //set value of new cell to parameter
+        caloriesBurnedCell.text(data);
+    }
 
-if (exercise && duration) {
-    //getCaloriesBurnedApi(exercise, duration);
-    console.log(exercise + " " + duration)
-} else if (!exercise || !duration || exercise == " " || duration == " ") {
-    window.alert("Error! Please properly enter the name of your exercise activity and the duration");
-    return;
-}
+    //function for processing and storing the inputs
+    function processInput(event) {
+        event.preventDefault();
 
-//stack overflow helped me here. creating objects out of inputs to add to the empty array
- exercisesArray.push({exercise: exercise, duration: duration});
+        //var exercise and var duration are the values of user inputs
+        var exercise = userExerciseInput.val();
+        var duration = userDurationInput.val();
 
- console.log(exercisesArray);
+        if (exercise && duration) {
+            getCaloriesBurnedApi(exercise, duration);
+            //  console.log(exercise + " " + duration)
+        } else if (!exercise || !duration || exercise == " " || duration == " ") {
+            window.alert("Error! Please properly enter the name of your exercise activity and the duration");
+            return;
+        }
 
- //sets local storage with array
- localStorage.setItem("user inputs", JSON.stringify(exercisesArray));
+        //stack overflow helped me here. creating objects out of inputs to add to the empty array
+        exercisesArray.push({ exercise: exercise, duration: duration });
 
- //empties the user input area after submitting input with click
- userExerciseInput.val("");
- userDurationInput.val("");
+        console.log(exercisesArray);
 
-//call other functions
-retrieveStorage();
-}
+        //sets local storage with array
+        localStorage.setItem("user inputs", JSON.stringify(exercisesArray));
 
-submitExerciseBtn.on('click', processInput)
+        //empties the user input area after submitting input with click
+        userExerciseInput.val("");
+        userDurationInput.val("");
 
-// exercise and duration will be parameters
-var getCaloriesBurnedApi = function (exercise, duration) {
+        //call other functions
+        retrieveStorage();
+    }
 
-        var exerciseAPIUrl = 'https://api.api-ninjas.com/v1/caloriesburned?activity=' + exercise + '&duration=' + duration;
+    // exercise and duration will be parameters
+    var getCaloriesBurnedApi = function (exercise, duration) {
+
+        var exerciseAPIUrl = 'https://api.api-ninjas.com/v1/caloriesburned?activity=' + exercise + '&duration=' + duration
 
         fetch(exerciseAPIUrl, {
             headers: {
                 'X-Api-Key': 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q'
             }
-        })
-        .then(function (response) {
+        }).then(function (response) {
             //creates an error if response from API is not 200
             if (response.status != 200) {
                 window.alert("Error! Please enter a valid city")
@@ -73,8 +118,13 @@ var getCaloriesBurnedApi = function (exercise, duration) {
             else if (response.ok) {
                 return response.json();
             }
-        })
-            .then(function (data) {
-                console.log(data);
-            });
+        }).then(function (data) {
+            console.log(data);
+            var caloriesBurned = data[0].total_calories;
+            console.log(caloriesBurned);
+            appendCaloriesBurned(caloriesBurned);
+        });
     };
+
+    submitExerciseBtn.on('click', processInput);
+});
