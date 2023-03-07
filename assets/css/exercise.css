@@ -8,9 +8,14 @@ h3 {
 }
 
 td {
-    padding: 1.5rem;
+    padding: 1rem;
     text-transform: capitalize;
     font-size: 14px;
+    text-align: center;
+}
+
+th {
+    font-size: 16px;
 }
 
 .exercise-list {
@@ -18,4 +23,10 @@ td {
     justify-content: center;
     justify-items: center;
     margin: auto;
+}
+
+#exercise-table {
+    width: 60rem;
+    height: auto;
+    text-align: center;
 }

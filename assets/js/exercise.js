@@ -5,7 +5,8 @@ var userDurationInput = $('#duration-input');
 var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
-
+//empty variables
+var caloriesBurned = "";
 //empty array of objects in order to store exercise and duration inputs
 var exercisesArray = [];
 
@@ -27,15 +28,21 @@ $(document).ready(function () {
 
             // Create a new table row
             var newRow = document.createElement('tr');
+            newRow.classList.add("table-row");
             var exerciseCell = document.createElement('td');
             var durationCell = document.createElement('td');
+            var caloriesBurnedCell = document.createElement('td')
+            caloriesBurnedCell.classList.add('calories-burned');
 
             // Add the data from local storage to the new row
             exerciseCell.textContent = obj.exercise;
             durationCell.textContent = obj.duration;
+            caloriesBurnedCell.textContent = "";
+
             //Append text content to new row
             newRow.appendChild(exerciseCell);
             newRow.appendChild(durationCell);
+            newRow.appendChild(caloriesBurnedCell);
 
             // Check if the data is already in the table (source: Stack Overflow)
             var exerciseInTable = Array.from(exerciseTable.querySelectorAll('td:first-child'))
@@ -50,6 +57,16 @@ $(document).ready(function () {
             exerciseTable.appendChild(newRow);
         });
     };
+
+//function to append fetched data to table
+    function appendCaloriesBurned (data) {
+
+        //target cells we created
+        var caloriesBurnedCell = $('.calories-burned');
+
+        //set value of new cell to parameter
+        caloriesBurnedCell.text(data);
+    }
 
     //function for processing and storing the inputs
     function processInput(event) {
@@ -103,6 +120,9 @@ $(document).ready(function () {
             }
         }).then(function (data) {
             console.log(data);
+            var caloriesBurned = data[0].total_calories;
+            console.log(caloriesBurned);
+            appendCaloriesBurned(caloriesBurned);
         });
     };
 
