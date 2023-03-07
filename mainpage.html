@@ -32,10 +32,10 @@
       <label for="meal-type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><h3>Select a type of meal</h3></label>
       <select id="meal-type" class="max-w-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option selected>Choose the type of meal</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
-        <option value="snack">Snack</option>
+        <option id="breakfast" value="breakfast">Breakfast</option>
+        <option id="lunch" value="lunch">Lunch</option>
+        <option id="dinner" value="dinner">Dinner</option>
+        <option id="snack" value="snack">Snack</option>
       </select>
       <!--Input Food-->
       <div class="block mb-6 pt-16">
@@ -59,13 +59,12 @@
                 <!-- Article -->
                 <article class="overflow-hidden rounded-lg shadow-lg">
                     <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h3 class="text-lg" id="breakfast-group">
+                        <h3 class="text-lg">
                               Breakfast:
                         </h3>
                     </header>
                     <div class="p-2 md:p-4">
-                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      <li>Food Item 1</li>
+                    <ul id="breakfast-group" class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
                     </ul>
                   </div>
                 </article>
@@ -80,13 +79,12 @@
               <!-- Article -->
               <article class="overflow-hidden rounded-lg shadow-lg">
                   <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                      <h3 class="text-lg" id="lunch-group">
+                      <h3 class="text-lg">
                             Lunch:
                       </h3>
                   </header>
                   <div class="p-2 md:p-4">
-                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    <li>Food Item 1</li>
+                    <ul id="lunch-group" class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
                   </ul>
                 </div>
               </article>
@@ -101,13 +99,12 @@
               <!-- Article -->
               <article class="overflow-hidden rounded-lg shadow-lg">
                   <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                      <h3 class="text-lg" id="dinner-group">
+                      <h3 class="text-lg">
                             Dinner:
                       </h3>
                   </header>
                   <div class="p-2 md:p-4">
-                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    <li>Food Item 1</li>
+                    <ul id="dinner-group" class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
                   </ul>
                 </div>
               </article>
@@ -122,13 +119,12 @@
               <!-- Article -->
               <article class="overflow-hidden rounded-lg shadow-lg">
                   <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                      <h3 class="text-lg" id="snack-group">
+                      <h3 class="text-lg">
                             Snack:
                       </h3>
                   </header>
                   <div class="p-2 md:p-4">
-                    <ul class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    <li>Food Item 1</li>
+                    <ul id="snack-group" class="breakfast-food-list mb-3 font-normal text-gray-700 dark:text-gray-400">
                   </ul>
                 </div>
               </article>
@@ -143,12 +139,13 @@
       <h4>Daily Totals:</h4>
       </div>
     <section class="macros">
-      <div>Protein:</div>
-      <div>Carbs:</div>
-      <div>Fats:</div>
-      <div>Calories:</div>
+      <div>Protein:</br>
+           Carbs:</br>
+           Fats:</br>
+           Calories:</br>
+      </div>
     </section>
 
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/mainpage.js"></script>
   </body>
 </html>
