@@ -20,7 +20,11 @@
 </head>
 <!--Header-->
 <header class="flex justify-between p-10">
-  <h1>Users Name</h1>
+  <div class="justify-start flex">
+  <input type="text" id="nameInput"> 
+    <button onclick="updateName()"></button>
+   <h1 id="name"></h1> 
+  </div>
   <!--Button that takes you back to Calorie Input (Main) Page-->
   <div>
     <a href="mainpage.html"><button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" id="add-calorie-btn">Add Calories</button></a>
