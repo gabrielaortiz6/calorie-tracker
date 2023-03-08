@@ -47,74 +47,72 @@ submitBtn.addEventListener("click", function (event) {
     
       var mealType = document.getElementById("meal-type").value;
     
-      // Conditions for filing nutrients
-      if (protein >= 0) {
-        var proteinLabel = document.createTextNode("Protein: ");
-        var proteinValue = document.createTextNode(protein + "g");
-        var proteinLI = document.createElement("li");
-        proteinLI.appendChild(proteinLabel);
-        proteinLI.appendChild(proteinValue);
-        proteinAppend.appendChild(proteinLI);
-        totalProtein += protein;
-      }
-      if (carbs >= 0) {
-        var carbsLabel = document.createTextNode("Carbs: ");
-        var carbsValue = document.createTextNode(carbs + "g");
-        var carbsLI = document.createElement("li");
-        carbsLI.appendChild(carbsLabel);
-        carbsLI.appendChild(carbsValue);
-        carbAppend.appendChild(carbsLI);
-        totalCarbs += carbs;
-      }
-      if (fat >= 0) {
-        var fatLabel = document.createTextNode("Fats: ");
-        var fatValue = document.createTextNode(fat + "g");
-        var fatLI = document.createElement("li");
-        fatLI.appendChild(fatLabel);
-        fatLI.appendChild(fatValue);
-        fatAppend.appendChild(fatLI);
-        totalFat += fat;
-      }
-      
-      if (calories >= 0) {
-        var caloriesLabel = document.createTextNode("Calories: ");
-        var caloriesValue = document.createTextNode(calories);
-        var caloriesLI = document.createElement("li");
-        caloriesLI.appendChild(caloriesLabel);
-        caloriesLI.appendChild(caloriesValue);
-        calorieAppend.appendChild(caloriesLI);
-        totalCalories += calories;
-      }
-  
-      // Running total of nutrients
-      var totalProtein = parseFloat(localStorage.getItem("total-protein")) || 0;
-      var totalCarbs = parseFloat(localStorage.getItem("total-carbs")) || 0;
-      var totalFat = parseFloat(localStorage.getItem("total-fat")) || 0;
-      var totalCalories = parseFloat(localStorage.getItem("total-calories")) || 0;
-      
-      localStorage.setItem("total-protein", totalProtein + protein);
-      localStorage.setItem("total-carbs", totalCarbs + carbs);
-      localStorage.setItem("total-fat", totalFat + fat);
-      localStorage.setItem("total-calories", totalCalories + calories);
-      
-      var totalProteinValue = document.createTextNode(totalProtein + protein + "g");
-      var totalCarbsValue = document.createTextNode(totalCarbs + carbs + "g");
-      var totalFatValue = document.createTextNode(totalFat + fat + "g");
-      var totalCaloriesValue = document.createTextNode(totalCalories + calories);
-      
-      document.getElementById("total-protein").textContent = totalProteinValue;
-      document.getElementById("total-carbs").textContent = totalCarbsValue;
-      document.getElementById("total-fat").textContent = totalFatValue;
-      document.getElementById("total-calories").textContent = totalCaloriesValue;
-    
-      var caloriesTotalLI = document.getElementById("calories-total");
-caloriesTotalLI.textContent = "Calories Total: " + caloriesTotal;
+       // Conditions for where to put food
+       if ((mealType === breakfast)) {
+        var breakfastGroup = document.getElementById("breakfast-group");
+        var breakfastLI = document.createElement("li");
+        breakfastLI.appendChild(foodInputTextNode);
+        breakfastGroup.appendChild(breakfastLI);
+        } else if ((mealType === lunch)) {
+          var lunchGroup = document.getElementById("lunch-group");
+          var lunchLI = document.createElement("li");
+          lunchLI.appendChild(foodInputTextNode);
+          lunchGroup.appendChild(lunchLI);
+      } else if ((mealType === dinner)) {
+          var dinnerGroup = document.getElementById("dinner-group");
+          var dinnerLI = document.createElement("li");
+          dinnerLI.appendChild(foodInputTextNode);
+          dinnerGroup.appendChild(dinnerLI);
+      } else if ((mealType === snack)) {
+          var snackGroup = document.getElementById("snack-group");
+          var snackLI = document.createElement("li");
+          snackLI.appendChild(foodInputTextNode);
+          snackGroup.appendChild(snackLI);
+      } else {
+        alert("Please choose a meal catagory.");
+     }
+ // Conditions for filing nutrients
+ if (protein >= 0) {
+  var proteinLabel = document.createTextNode("Protein: ");
+  var proteinValue = document.createTextNode(protein + "g");
+  var proteinLI = document.createElement("li");
+  proteinLI.appendChild(proteinLabel);
+  proteinLI.appendChild(proteinValue);
+  proteinAppend.appendChild(proteinLI);
+  totalProtein += protein;
+}
+if (carbs >= 0) {
+  var carbsLabel = document.createTextNode("Carbs: ");
+  var carbsValue = document.createTextNode(carbs + "g");
+  var carbsLI = document.createElement("li");
+  carbsLI.appendChild(carbsLabel);
+  carbsLI.appendChild(carbsValue);
+  carbAppend.appendChild(carbsLI);
+  totalCarbs += carbs;
+}
+if (fat >= 0) {
+  var fatLabel = document.createTextNode("Fats: ");
+  var fatValue = document.createTextNode(fat + "g");
+  var fatLI = document.createElement("li");
+  fatLI.appendChild(fatLabel);
+  fatLI.appendChild(fatValue);
+  fatAppend.appendChild(fatLI);
+  totalFat += fat;
+}
 
-// Clear input field
-foodInput.value = "";
+if (calories >= 0) {
+  var caloriesLabel = document.createTextNode("Calories: ");
+  var caloriesValue = document.createTextNode(calories);
+  var caloriesLI = document.createElement("li");
+  caloriesLI.appendChild(caloriesLabel);
+  caloriesLI.appendChild(caloriesValue);
+  calorieAppend.appendChild(caloriesLI);
+  totalCalories += calories;
+}
+
 
 })
 .catch((error) => {
 console.log(error);
-  });
+});
 });
