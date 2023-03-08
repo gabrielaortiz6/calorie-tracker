@@ -5,49 +5,109 @@ var userDurationInput = $('#duration-input');
 var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
-//empty variables
 var caloriesBurned = "";
-//empty array of objects in order to store exercise and duration inputs
+//empty array of objects in order to store exercise and duration inputs, and calories burned 
 var exercisesArray = [];
+var availableExercises = [
+    {label: "Aerobics", value: "general"},
+    {label: "Archery", value: "rchery"},
+    {label: "Ballet", value: "alle"},
+    {label: "Backstroke (swimming)", value: "backstroke"},
+    {label: "Baseball", value: "baseball"},
+    {label: "Basketball", value: "basketball"},
+    {label: "Beach Volleyball", value: "each"},
+    {label: "BMX", value: "bmx"},
+    {label: "Bowling", value: "owling"},
+    {label: "Boxing", value: "oxing"},
+    {label: "Breaststroke (swimming)", value: "breakstroke"},
+    {label: "Butterfly (swimming)", value: "butterfly"},
+    {label: "Canoeing", value: "canoeing"},
+    {label: "Circuit training", value: "train"},
+    {label: "Climbing", value: "climbing"},
+    {label: "Cricket", value: "ricket"},
+    {label: "Croquet", value: "quet"},
+    {label: "Cross country", value: "cross"},
+    {label: "Cycling", value: "ycling"},
+    {label: "Dancing", value: "dancing"},
+    {label: "Diving", value: "platform"},
+    {label: "Dodgeball", value: "dodgeball"},
+    {label: "Field hockey", value: "field%20hockey"},
+    {label: "Football", value: "flag"},
+    {label: "Freestyle (swimming)", value: "freestyle"},
+    {label: "Frisbee", value: "frisbee"},
+    {label: "Golf", value: "gold"},
+    {label: "Handball", value: "andball" },
+    {label: "High Jump", value: "high%20jump"},
+    {label: "Hiking", value: "iking"},
+    {label: "Hockey", value: "ice%20hock"},
+    {label: "Horseback riding", value: "riding"},
+    {label: "Hopscotch", value: "hopscotch"},
+    {label: "Hurdles", value: "hurdles"},
+    {label: "Ice skating", value: "ce%20skating"},
+    {label: "Jazzercise", value: "zerc"},
+    {label: "Judo", value: "judo"},
+    {label: "Jujitsu", value: "jujitsu"},
+    {label: "Jump rope", value: "rope"},
+    {label: "Karate", value: "karate"},
+    {label: "Kayaking", value: "kayak"},
+    {label: "Kick boxing", value: "kick"},
+    {label: "Krav maga", value: "rav%20maga"},
+    {label: "Lacrosse", value: "cro"},
+    {label: "Weightlifting", value: "lifting"},
+    {label: "Martial Arts", value: "artial"},
+    {label: "Mountain bike", value: "mountain"},
+    {label: "Paddleball", value: "addleball"},
+    {label: "Ping Pong", value: "pong"},
+    {label: "Pole Vault", value: "pole"},
+    {label: "Pushups", value: "pushup"},
+    {label: "Racquetball", value: "cquet"},
+    {label: "Roller blading", value: "blading"},
+    {label: "Roller skating", value: "skating"},
+    {label: "Rowing", value: "rowing"},
+    {label: "Rowing machine", value: "ow"},
+    {label: "Rugby", value: "ugby"},
+    {label: "Running", value: "run"},
+    {label: "Sailing", value: "sail"},
+    {label: "Scuba diving", value: "scuba"},
+    {label: "Situps", value: "situp"},
+    {label: "Skateboarding", value: "boarding"},
+    {label: "Skiing", value: "skii"},
+    {label: "Stair machine", value: "r machine"},
+    {label: "Step aerobics", value: "step"},
+    {label: "Soccer", value: "g%20soccer"},
+    {label: "Softball", value: "oftball"},
+    {label: "Soul cycling", value: "tationary"},
+    {label: "Speed skating", value: "eed%20ska"},
+    {label: "Surfing", value: "board%20surf"},
+    {label: "Squash", value: "quash"},
+    {label: "Tae kwon do", value: "tae"},
+    {label: "Tap dance", value: "dance"},
+    {label: "Tennis", value: "g%20tennis"},
+    {label: "Tobaggan (sledding)", value: "tobag"},
+    {label: "Track and Field", value: "field"},
+    {label: "Volleyball", value: "olleyball"},
+    {label: "Walking (leisurely)",  value: "run"},
+    {label: "Walking (brisk)", value: "brisk"},
+    {label: "Water skiing", value: "water%20sk"},
+    {label: "Windsurfing", value: "surfing"},
+    {label: "Yoga", value: "yoga"},
+  ];
 
 $(document).ready(function () {
 
-    // function for drop down list
-    // function autocomplete() {
-    //     var availableExercises= [
-
-    //       "Baseball",
-    //       "Basketball",
-    //       "Boxing",
-    //       "Climbing",
-    //       "Dancing",
-    //       "Football",
-    //       "Frisbee",
-    //       "Golf",
-    //       "Handball",
-    //       "High"
-    //       "Horseback riding",
-    //       "Lifting",
-    //       "Martial Arts",
-    //       "Ping Pong",
-    //       "Pushup",
-    //       "Run",
-    //       "Sailing",
-    //       "Situp",
-    //       "Skii",
-    //       "Soccer",
-    //       "Surfing",
-    //       "Tennis",
-    //       "Track",
-    //       "Volleyball",
-    //       "Walking",
-    //       "Water skii"
-    //     ];
-
-    // //     $( "#tags" ).autocomplete({
-    // //       source: availableExercises
-    // //     });
-    // //   };
+    // function for autocomplete
+   //$(function () {
+        $('#exercise-input').autocomplete({
+          source: availableExercises,
+          select: function( event, ui ) {
+            event.preventDefault();
+            $('#exercise-input').val(ui.item.label);
+        },
+        focus: function( event, ui) {
+            event.preventDefault();
+            $('#exercise-input').val(ui.item.label)
+          }
+     });
 
     //function for retrieving user input from storage
     function retrieveStorage() {
