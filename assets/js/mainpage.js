@@ -9,6 +9,19 @@ var totalCarbs = 0;
 var totalFat = 0;
 var totalCalories = 0;
 
+// Initialize nutrient total elements
+var proteinTotalElement = document.getElementById("protein-total");
+proteinTotalElement.textContent = "Protein: " + totalProtein + "g";
+
+var carbsTotalElement = document.getElementById("carbs-total");
+carbsTotalElement.textContent = "Carbs: " + totalCarbs + "g";
+
+var fatsTotalElement = document.getElementById("fats-total");
+fatsTotalElement.textContent = "Fats: " + totalFat + "g";
+
+var caloriesTotalElement = document.getElementById("calories-total");
+caloriesTotalElement.textContent = "Calories: " + totalCalories;
+
 // Submit button event listener for searching foods
 var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", function (event) {
@@ -37,10 +50,10 @@ submitBtn.addEventListener("click", function (event) {
       var lunch = document.getElementById("lunch").value;
       var dinner = document.getElementById("dinner").value;
       var snack = document.getElementById("snack").value;
-      var proteinAppend = document.getElementById("protein");
-      var carbAppend = document.getElementById("carbs");
-      var fatAppend = document.getElementById("fats");
-      var calorieAppend = document.getElementById("calories");
+      var proteinAppend = document.getElementById("protein-total");
+      var carbAppend = document.getElementById("carbs-total");
+      var fatAppend = document.getElementById("fats-total");
+      var calorieAppend = document.getElementById("calories-total");
     
       var foodInputTextNode = document.createTextNode(food);
       localStorage.setItem("food-input", food);
@@ -72,44 +85,90 @@ submitBtn.addEventListener("click", function (event) {
         alert("Please choose a meal catagory.");
      }
  // Conditions for filing nutrients
- if (protein >= 0) {
-  var proteinLabel = document.createTextNode("Protein: ");
-  var proteinValue = document.createTextNode(protein + "g");
-  var proteinLI = document.createElement("li");
-  proteinLI.appendChild(proteinLabel);
-  proteinLI.appendChild(proteinValue);
-  proteinAppend.appendChild(proteinLI);
+// Conditions for filing nutrients
+if (protein >= 0) {
+  var proteinListItem = proteinAppend.querySelector("li");
+  if (proteinListItem) {
+    var proteinValueElement = proteinListItem.querySelector("span:last-child");
+    var existingProtein = parseFloat(proteinValueElement.textContent);
+    var newProtein = existingProtein + protein;
+    proteinValueElement.textContent = newProtein + "g";
+  } else {
+    var proteinLabel = document.createTextNode("Protein: ");
+    var proteinValue = document.createTextNode(protein + "g");
+    var proteinLI = document.createElement("li");
+    var proteinSpan = document.createElement("span");
+    proteinSpan.appendChild(proteinLabel);
+    proteinSpan.appendChild(proteinValue);
+    proteinLI.appendChild(proteinSpan);
+    proteinAppend.appendChild(proteinLI);
+  }
   totalProtein += protein;
+  proteinTotalElement.textContent = "Protein: " + totalProtein + "g";
 }
+
 if (carbs >= 0) {
-  var carbsLabel = document.createTextNode("Carbs: ");
-  var carbsValue = document.createTextNode(carbs + "g");
-  var carbsLI = document.createElement("li");
-  carbsLI.appendChild(carbsLabel);
-  carbsLI.appendChild(carbsValue);
-  carbAppend.appendChild(carbsLI);
+  var carbsListItem = carbAppend.querySelector("li");
+  if (carbsListItem) {
+    var carbsValueElement = carbsListItem.querySelector("span:last-child");
+    var existingCarbs = parseFloat(carbsValueElement.textContent);
+    var newCarbs = existingCarbs + carbs;
+    carbsValueElement.textContent = newCarbs + "g";
+  } else {
+    var carbsLabel = document.createTextNode("Carbs: ");
+    var carbsValue = document.createTextNode(carbs + "g");
+    var carbsLI = document.createElement("li");
+    var carbsSpan = document.createElement("span");
+    carbsSpan.appendChild(carbsLabel);
+    carbsSpan.appendChild(carbsValue);
+    carbsLI.appendChild(carbsSpan);
+    carbAppend.appendChild(carbsLI);
+  }
   totalCarbs += carbs;
+  carbsTotalElement.textContent = "Carbs: " + totalCarbs + "g";
 }
+
 if (fat >= 0) {
-  var fatLabel = document.createTextNode("Fats: ");
-  var fatValue = document.createTextNode(fat + "g");
-  var fatLI = document.createElement("li");
-  fatLI.appendChild(fatLabel);
-  fatLI.appendChild(fatValue);
-  fatAppend.appendChild(fatLI);
+  var fatListItem = fatAppend.querySelector("li");
+  if (fatListItem) {
+    var fatValueElement = fatListItem.querySelector("span:last-child");
+    var existingFat = parseFloat(fatValueElement.textContent);
+    var newFat = existingFat + fat;
+    fatValueElement.textContent = newFat + "g";
+  } else {
+    var fatLabel = document.createTextNode("Fats: ");
+    var fatValue = document.createTextNode(fat + "g");
+    var fatLI = document.createElement("li");
+    var fatSpan = document.createElement("span");
+    fatSpan.appendChild(fatLabel);
+    fatSpan.appendChild(fatValue);
+    fatLI.appendChild(fatSpan);
+    fatAppend.appendChild(fatLI);
+  }
   totalFat += fat;
+  fatsTotalElement.textContent = "Fats: " + totalFat + "g";
 }
 
 if (calories >= 0) {
-  var caloriesLabel = document.createTextNode("Calories: ");
-  var caloriesValue = document.createTextNode(calories);
-  var caloriesLI = document.createElement("li");
-  caloriesLI.appendChild(caloriesLabel);
-  caloriesLI.appendChild(caloriesValue);
-  calorieAppend.appendChild(caloriesLI);
+  var caloriesListItem = calorieAppend.querySelector("li");
+  if (caloriesListItem) {
+    var caloriesValueElement = caloriesListItem.querySelector("span:last-child");
+    var existingCalories = parseFloat(caloriesValueElement.textContent);
+    var newCalories = existingCalories + calories;
+    caloriesValueElement.textContent = newCalories;
+  } else {
+    var caloriesLabel = document.createTextNode("Calories: ");
+    var caloriesValue = document.createTextNode(calories);
+    var caloriesLI = document.createElement("li");
+    var caloriesSpan = document.createElement("span");
+    caloriesSpan.appendChild(caloriesLabel);
+    caloriesSpan.appendChild(caloriesValue);
+    caloriesLI.appendChild(caloriesSpan);
+    calorieAppend.appendChild(caloriesLI);
+  }
   totalCalories += calories;
+  caloriesTotalElement.textContent = "Calories: " + totalCalories
 }
-
 
 })
 .catch((error) => {
