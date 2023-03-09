@@ -31,6 +31,10 @@ th {
     margin: auto;
 }
 
+.macros { 
+    list-style-type: none;
+}
+
 .ui-autocomplete {
     border-radius: 4px;
     width: 11rem;
@@ -62,6 +66,7 @@ th {
     font-size: 15px;
     font-weight: 500;
     width: 100%;
+    padding-left: 0;
 }
 
 /* Disables Message from Jquery UI */

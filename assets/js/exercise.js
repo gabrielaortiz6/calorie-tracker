@@ -6,29 +6,31 @@ var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
 var caloriesBurned = "";
+var exercise = "";
+var exerciseLabel = "";
 //empty array of objects in order to store exercise and duration inputs, and calories burned 
 var exercisesArray = [];
 
-//i commented out the ones where the value isn't working
+//autofill options
 var availableExercises = [
     {label: "Aerobics", value: "general"},
-    //{label: "Archery", value: "rcher"},
-    //{label: "Ballet", value: "azz"},
+    {label: "Archery", value: "rcher"},
+    {label: "Ballet", value: "allet"},
     {label: "Backstroke (swimming)", value: "ackstrok"},
     {label: "Baseball", value: "baseball"},
     {label: "Basketball", value: "basketball"},
-    //{label: "Beach Volleyball", value: "each"},
+    {label: "Beach Volleyball", value: "each"},
     {label: "BMX", value: "bmx"},
     {label: "Bowling", value: "owling"},
     {label: "Boxing", value: "oxing"},
-    //{label: "Breaststroke (Swimming)", value: "breakstroke"},
-    //{label: "Butterfly (Swimming)", value: "butterfly"},
+    {label: "Breaststroke (Swimming)", value: "breakstroke"},
+    {label: "Butterfly (Swimming)", value: "butterfly"},
     {label: "Calisthenics", value: "situp"},
     {label: "Canoeing", value: "canoeing"},
-    //{label: "Circuit Training", value: "train"},
+    {label: "Circuit Training", value: "train"},
     {label: "Climbing", value: "climbing"},
-    //{label: "Cricket", value: "cricket"},
-    //{label: "Croquet", value: "quet"},
+    {label: "Cricket", value: "cricket"},
+    {label: "Croquet", value: "quet"},
     {label: "Cross Country", value: "cross"},
     {label: "Cycling", value: "ycling"},
     {label: "Dancing", value: "dancing"},
@@ -36,80 +38,81 @@ var availableExercises = [
     {label: "Dodgeball", value: "dodgeball"},
     {label: "Field hockey", value: "field%20hockey"},
     {label: "Football", value: "flag"},
-    //{label: "Freestyle (Swimming)", value: "freestyle"},
+    {label: "Freestyle (Swimming)", value: "freestyle"},
     {label: "Frisbee", value: "frisbee"},
     {label: "Golf", value: "golf"},
-    //{label: "Handball", value: "andball" },
+    {label: "Handball", value: "andball" },
     {label: "High Jump", value: "high%20jump"},
-    //{label: "Hiking", value: "iking"},
+    {label: "Hiking", value: "iking"},
     {label: "Hockey", value: "ice%20hock"},
-    //{label: "Horseback Riding", value: "riding"},
+    {label: "Horseback Riding", value: "riding"},
     {label: "Hopscotch", value: "hopscotch"},
     {label: "Hurdles", value: "hurdles"},
-   // {label: "Ice Skating", value: "ce%20skating"},
-   // {label: "Jazzercise", value: "zerc"},
+    {label: "Ice Skating", value: "ce%20skating"},
+    {label: "Jazzercise", value: "zerc"},
     {label: "Judo", value: "judo"},
     {label: "Jujitsu", value: "jujitsu"},
-    //{label: "Jumping Rope", value: "p%20rope"},
+    {label: "Jumping Rope", value: "p%20rope"},
     {label: "Karate", value: "karate"},
     {label: "Kayaking", value: "kayak"},
-    //{label: "Kickboxing", value: "ick%20boxing"},
-    //{label: "Krav Maga", value: "rav%20maga"},
-    //{label: "Lacrosse", value: "lacrosse"},
-    //{label: "Weightlifting", value: "lifting"},
-    //{label: "Martial Arts", value: "artial"},
-    //{label: "Mountain Biking", value: "mountain"},
+    {label: "Kickboxing", value: "ick%20boxing"},
+    {label: "Krav Maga", value: "rav%20maga"},
+    {label: "Lacrosse", value: "lacrosse"},
+    {label: "Weightlifting", value: "lifting"},
+    {label: "Martial Arts", value: "artial"},
+    {label: "Mountain Biking", value: "mountain"},
     {label: "Paddleball", value: "addleball"},
     {label: "Ping Pong", value: "pong"},
     {label: "Pole Vault", value: "pole"},
     {label: "Pushups", value: "pushup"},
     {label: "Racquetball", value: "cquet"},
-    //{label: "Rollerblading", value: "blading"},
-    //{label: "Rollerskating", value: "skating"},
+    {label: "Rollerblading", value: "blading"},
+    {label: "Rollerskating", value: "skating"},
     {label: "Rowing", value: "rowing"},
-    //{label: "Rugby", value: "rugby"},
-    // this one used to work idk what the issue is {label: "Running", value: "run"},
+    {label: "Rugby", value: "rugby"},
+    {label: "Running", value: "run"},
     {label: "Sailing", value: "sail"},
     {label: "Scuba diving", value: "scuba"},
     {label: "Situps", value: "situp"},
-    //{label: "Skateboarding", value: "boarding"},
+    {label: "Skateboarding", value: "boarding"},
     {label: "Skiing", value: "skii"},
-    //{label: "Stair Machine", value: "r machine"},
+    {label: "Stair Machine", value: "r machine"},
     {label: "Step Aerobics", value: "step"},
     {label: "Soccer", value: "g%20soccer"},
-    //{label: "Softball", value: "softball"},
-    //{label: "Speed Skating", value: "eed%20ska"},
+    {label: "Softball", value: "softball"},
+    {label: "Speed Skating", value: "eed%20ska"},
     {label: "Surfing", value: "board%20surf"},
-    //{label: "Squash", value: "squash"},
-    //{label: "Tae Kwon Do", value: "kwon"},
-    //{label: "Tap Dance", value: "dance"},
+    {label: "Squash", value: "squash"},
+    {label: "Tae Kwon Do", value: "kwon"},
+    {label: "Tap Dance", value: "dance"},
     {label: "Tennis", value: "g%20tennis"},
-    //{label: "Tobaggan (sledding)", value: "tobag"},
-    //{label: "Track and Field", value: "field"},
+    {label: "Tobaggan (sledding)", value: "tobag"},
+    {label: "Track and Field", value: "field"},
     {label: "Volleyball", value: "olleyball"},
-    // {label: "Walking (brisk)", value: "brisk"},
-    // {label: "Walking (leisurely)",  value: "run"},
+    {label: "Walking (brisk)", value: "brisk"},
+    {label: "Walking (leisurely)",  value: "run"},
     {label: "Water Skiing", value: "water%20sk"},
-    //{label: "Windsurfing", value: "surfing"},
+    {label: "Windsurfing", value: "surfing"},
     {label: "Yoga", value: "yoga"},
   ];
 
 $(document).ready(function () {
 
     // function for autocomplete
-   //$(function () {
         $('#exercise-input').autocomplete({
            messages: null,
             source: availableExercises,
           select: function( event, ui ) {
             event.preventDefault();
-            $('#exercise-input').val(ui.item.label);
+            exerciseLabel = ui.item.label;
+            ('#exercise-input').textContent = ui.item.label;
+            exercise = ui.item.value;
         },
         focus: function( event, ui) {
             event.preventDefault();
             $('#exercise-input').val(ui.item.label)
           }
-     });
+        });
 
     //function for retrieving user input from storage
     function retrieveStorage() {
@@ -122,7 +125,7 @@ $(document).ready(function () {
             exercisesArray = storedData;
         };
 
-        //loop through each object in the exercisesArray
+        //loop through each object in the exercisesArray and call the add row function
         exercisesArray.forEach((obj) => {
             addRow(obj.exercise, obj.duration, obj.calories);
         });
@@ -138,7 +141,8 @@ $(document).ready(function () {
            caloriesBurnedCell.classList.add('calories-burned');
 
            // Add the data from local storage to the new row
-           exerciseCell.textContent = exercise;
+           //change what exercise cell equals so it matches label of array
+           exerciseCell.textContent = exerciseLabel;
            durationCell.textContent = duration;
            caloriesBurnedCell.textContent = calories;
 
@@ -172,7 +176,6 @@ $(document).ready(function () {
                 //set value of new cell to parameter
                 caloriesBurnedCell.text(data);
             }
-
         });
     }
 
@@ -180,15 +183,17 @@ $(document).ready(function () {
     function processInput(event) {
         event.preventDefault();
 
-        //var exercise and var duration are the values of user inputs
-        var exercise = userExerciseInput.val();
+    
+        //var exercise = userExerciseInput.val();
         var duration = userDurationInput.val();
 
         if (exercise && duration) {
-            //retrieves storage
+
+            //call API function and use exercise and duration as parameters
             getCaloriesBurnedApi(exercise, duration);
-            //console.log(exercise + " " + duration)
-        } else if (!exercise || !duration || exercise == " " || duration == " ") {
+
+            //if there is no imput, a blank input, or the input for exercise does not match autofill options
+        } else if (!exercise || !duration || exercise == " " || duration == " " || !(exercise in availableExercises)) {
             window.alert("Error! Please properly enter the name of your exercise activity and the duration");
             return;
         }
@@ -229,7 +234,6 @@ $(document).ready(function () {
              //sets local storage with array
              localStorage.setItem("user inputs", JSON.stringify(exercisesArray));
              retrieveStorage();
-            //appendCaloriesBurned(caloriesBurned);
         });
     };
 

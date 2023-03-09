@@ -14,7 +14,10 @@
   <!--Tailwind CDN-->
   <script src="https://cdn.tailwindcss.com" rel="stylesheet tailwind"></script>
   <!--Jquery UI (for Autocomplete)-->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
   <!--CSS-->
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/exercise.css" />
@@ -84,14 +87,16 @@
 
   <div class="daily-totals flex justify-center">Daily totals:</div>
   <section class="macros flex justify-center">
-    <div class="inline">Protein:</div>
-    <div class="inline">Carbs:</div>
-    <div class="inline">Fats:</div>
-    <div class="inline">Calories:</div>
+    <ul>
+      <li><span id="protein-total">Protein: </span></li>
+      <li><span id="carbs-total">Carbs: </span></li>
+      <li><span id="fats-total">Fats: </span></li>
+      <li><span id="calories-total">Total Calories: </span></li>
+    </ul>
   </section>
   <!--JQuery & JQuery UI Links-->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="./assets/js/exercise.js"></script>
 </body>
 
