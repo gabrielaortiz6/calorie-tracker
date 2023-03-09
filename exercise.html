@@ -16,6 +16,7 @@
   <!--Jquery UI (for Autocomplete)-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <!--CSS-->
+  <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/exercise.css" />
   <title>Exercises</title>
 </head>
@@ -33,9 +34,9 @@
 <!--Input Form-->
 <body class="flex flex-col">
   <form class="exercise-form flex flex-col justify-center items-center">
-    <!--Enter Exercise Input-->
+    <!--Enter Exercise Input with Autocomplete-->
     <div class="ui-widget">
-      <label for="exercise-input" class="block mb-2 font-semibold text-gray-900 dark:text-white">Exercise List: </label>
+      <label for="exercise-input" class="text-center block mb-2 font-semibold text-gray-900 dark:text-white">Exercise List: </label>
       <input id="exercise-input" type="text" placeholder="Start typing to see options" required class="max-w-xs p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
     <!--Enter Duration of Exercise Input-->
@@ -55,7 +56,7 @@
     </button>
   </form>
 
-  <!--Tailwind Table for exercise list to display-->
+  <!--Table for Exercise List to Display-->
   <div class="exercise-list mt-4 mb-8">
     <div class="exercise-list relative overflow-x-auto shadow-md sm:rounded-lg">
       <table id="exercise-table" class="table-auto text-sm text-left text-gray-500 dark:text-gray-400">
@@ -75,7 +76,7 @@
         </thead>
         <!--Table Body-->
         <tbody class="table-body">
-          <!--Insert user inputs here-->
+          <!--JavaScript will insert user inputs here-->
         </tbody>
       </table>
     </div>
@@ -88,7 +89,7 @@
     <div class="inline">Fats:</div>
     <div class="inline">Calories:</div>
   </section>
-  <!--JQuery Link-->
+  <!--JQuery & JQuery UI Links-->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="./assets/js/exercise.js"></script>
