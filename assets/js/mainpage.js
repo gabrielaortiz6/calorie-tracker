@@ -2,6 +2,11 @@ const APP_ID = "2197e613";
 const APP_KEY = "49154045da302b5e11705006dfe3dfa6";
 var foodInput = document.getElementById("food-input");
 console.log(foodInput);
+var currentDateText = $('#currentDay');
+
+// DAYJS
+var currentDate = dayjs().format('dddd, MMMM D, YYYY');
+currentDateText.text(currentDate);
 
 // Total nutrition count variables
 var totalProtein = 0;
