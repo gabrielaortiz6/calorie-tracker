@@ -3,7 +3,29 @@
   padding: 0;
 }
 
+h3 {
+    font-size: 32px;
+}
+
+td {
+    padding: 1rem;
+    text-transform: capitalize;
+    font-size: 18px;
+    text-align: center;
+}
+
+th {
+    font-size: 19px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.input-label {
+    text-align: center;
+}
+
 .exercise-list {
+
   display: flex;
   justify-content: center;
   justify-items: center;
@@ -14,4 +36,62 @@
   display: flex;
   justify-content: start;
   align-content: start;
+
+    
+    margin: auto;
+}
+
+.macros { 
+    list-style-type: none;
+}
+
+.ui-autocomplete {
+    border-radius: 4px;
+    width: 11rem;
+    border:#6b7280 1px solid;
+    background-color:#F9FAFB;
+    opacity: 97%;
+}
+
+.ui-widget-content li {
+    background-color: #F9FAFB;
+    height: 20px;
+    width: 100%;
+    font-size: 14px;
+    padding-bottom: 18px;
+    padding-left: 8px;
+ }
+
+ .ui-widget-content li:first-child {
+    border-radius: 3px 3px 0 0;
+ }
+
+ .ui-widget-content li:last-child {
+    border-radius: 0 0 3px 3px; 
+  }
+
+.ui-widget-content li:hover,
+.ui-autocomplete:hover {
+    background-color:#cbd5e1;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    padding-left: 0;
+}
+
+/* Disables Message from Jquery UI */
+.ui-helper-hidden-accessible { 
+    display:none; 
+}
+
+#exercise-input {
+    width: 15rem;
+    margin-bottom: 30px;
+}
+
+#exercise-table {
+    width: 60rem;
+    height: auto;
+    text-align: center;
+
 }
