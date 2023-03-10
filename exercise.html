@@ -24,10 +24,17 @@
   <title>Exercises</title>
 </head>
 <!--Header-->
-<header class="flex justify-between p-5">
-  <h1>Users Name</h1>
+
+<header class="flex justify-between p-10">
+  <div class="justify-start flex">
+  <input type="text" id="nameInput"> 
+    <button onclick="updateName()"></button>
+   <h1 id="name"></h1> 
+  </div>
+
    <!--Current date display-->
 	<p id="currentDay" class="date text-1xl"></p>
+
   <!--Button that takes you back to Calorie Input (Main) Page-->
   <div>
     <a href="mainpage.html"><button

@@ -1,4 +1,7 @@
 // API key for calories burned API
+
+
+
 //var exerciseAPIKey = 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q';
 var userExerciseInput = $('#exercise-input');
 var userDurationInput = $('#duration-input');
@@ -7,6 +10,7 @@ var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
 //variable for current date
 var currentDateText = $('#currentDay');
+
 
 //code for current date to apply on page
 
@@ -239,6 +243,27 @@ $(document).ready(function () {
              //stack overflow helped me here. creating objects out of inputs to add to the empty array
              exercisesArray.push({ exercise: exercise, duration: duration, calories: caloriesBurned });
 
+
+
+
+
+function updateName() {
+  var nameInput = document.getElementById("nameInput");
+  localStorage.setItem("name", nameInput.value);
+  updateNameElement();
+}
+function updateNameElement() {
+  var nameElement = document.getElementById("name");
+  var name = localStorage.getItem("name");
+  if (name) {
+    nameElement.innerHTML = name;
+  }
+}
+
+window.onload = function () {
+  updateNameElement();
+};
+
              console.log(exercisesArray);
  
              //sets local storage with array
@@ -249,3 +274,4 @@ $(document).ready(function () {
 
     submitExerciseBtn.on('click', processInput);
 });
+
