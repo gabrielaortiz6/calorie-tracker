@@ -1,4 +1,7 @@
 // API key for calories burned API
+
+
+
 //var exerciseAPIKey = 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q';
 var userExerciseInput = $('#exercise-input');
 var userDurationInput = $('#duration-input');
@@ -8,6 +11,7 @@ var tableBody = $('.table-body');
 var userNameEl = $('#user-name');
 //variable for current date
 var currentDateText = $('#currentDay');
+
 
 //code for current date to apply on page
 
@@ -257,3 +261,4 @@ $(document).ready(function () {
 
     submitExerciseBtn.on('click', processInput);
 });
+
