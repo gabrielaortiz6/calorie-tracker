@@ -5,6 +5,16 @@ var userDurationInput = $('#duration-input');
 var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
+//variable for current date
+var currentDateText = $('#currentDay');
+
+//code for current date to apply on page
+
+// DAYJS
+var currentDate = dayjs().format('dddd, MMMM D, YYYY');
+currentDateText.text(currentDate);
+
+//empty variables
 var caloriesBurned = "";
 var exercise = "";
 var exerciseLabel = "";
