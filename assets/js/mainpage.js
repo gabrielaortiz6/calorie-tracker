@@ -184,15 +184,10 @@ submitBtn.addEventListener("click", function (event) {
         }
         totalCalories += calories;
         caloriesTotalElement.textContent = "Calories: " + totalCalories;
+        
+         // Save the new calorie count to local storage
+         localStorage.setItem("totalCalories", totalCalories);
       }
-      function updateTotalCalories(newCalories) {
-        // Update the UI to display the new calorie count
-        document.getElementById("total-calories").innerText = newCalories;
-      
-        // Save the new calorie count to local storage
-        localStorage.setItem("totalCalories", newCalories);
-      }
-      
     })
     .catch((error) => {
       console.log(error);

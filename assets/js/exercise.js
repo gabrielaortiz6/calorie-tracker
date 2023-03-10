@@ -119,6 +119,12 @@ $(document).ready(function () {
         userNameEl.text(storedName);
     }
 
+    function retrieveTotalCalories () {
+        var totalCalories = localStorage.getItem("totalCalories");
+        document.querySelector('#calories').textContent = "Total Calories: " + totalCalories;
+    }
+    
+    retrieveTotalCalories();
     updateName();
 
     // function for autocomplete
