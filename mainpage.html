@@ -21,7 +21,12 @@
   </head>
   <!--Header-->
   <header class="flex justify-between p-10">
-    <h2>Users Name</h2>
+
+    <p id="user-name"></p>
+
+    <!--Current date display-->
+	<p id="currentDay" class="date text-1xl"></p>
+
     <div class="inline exercise-btn">
       <!--Button that takes you Exercise Input (Main) Page-->
       <a href="exercise.html"><button class="inline bg-white hover:bg-gray-100
@@ -35,7 +40,7 @@
       <!--Select Type of Meal-->
       <label for="meal-type" class="block mb-2 text-sm font-medium text-gray-900
         dark:text-white"><h3>Select a type of meal</h3></label>
-      <select id="meal-type" class="text-center max-w-sm bg-gray-50 border border-gray-300
+      <select id="meal-type" class="max-w-sm bg-gray-50 border border-gray-300
         text-gray-900 text-sm rounded-lg focus:ring-blue-500
         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -50,21 +55,11 @@
       <div class="block mb-6 pt-16">
         <label for="food-input" class="text-center block mb-2 text-sm
           font-medium text-gray-900 dark:text-white"><h3>Enter food:</h3></label>
-        <input type="text" id="food-input" class="text-center bg-gray-50 border
+        <input type="text" id="food-input" class="bg-gray-50 border
           border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
           focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
           dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-          dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Enter a Food" required>
-      </div>
-      <!--Food Intake Amount-->
-      <div class="block mb-6 pt-16">
-        <label for="food-input" class="text-center block mb-2 text-sm
-          font-medium text-gray-900 dark:text-white"><h3>Enter your food quantity:</h3></label>
-        <input type="text" id="food-input" class="text-center bg-gray-50 border
-          border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-          focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-          dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-          dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Enter a Quantity" required>
+          dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       </div>
       <!--Submit Button-->
       <button class="max-w-md mb-2 bg-white hover:bg-gray-100 text-gray-800
@@ -181,7 +176,7 @@
         </ul>
       </section>
       </section>
-
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
       <script src="./assets/js/mainpage.js"></script>
     </body>
   </html>

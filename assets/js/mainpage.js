@@ -2,6 +2,11 @@ const APP_ID = "2197e613";
 const APP_KEY = "49154045da302b5e11705006dfe3dfa6";
 var foodInput = document.getElementById("food-input");
 console.log(foodInput);
+var currentDateText = $('#currentDay');
+
+// DAYJS
+var currentDate = dayjs().format('dddd, MMMM D, YYYY');
+currentDateText.text(currentDate);
 
 // Total nutrition count variables
 var totalProtein = 0;
@@ -21,6 +26,14 @@ fatsTotalElement.textContent = "Fats: " + totalFat + "g";
 
 var caloriesTotalElement = document.getElementById("calories-total");
 caloriesTotalElement.textContent = "Calories: " + totalCalories;
+
+//retrieving name
+function updateName () {
+  var storedName = localStorage.getItem("name");
+  document.querySelector('#user-name').textContent = storedName;
+}
+
+updateName();
 
 // Submit button event listener for searching foods
 var submitBtn = document.getElementById("submit-btn");
