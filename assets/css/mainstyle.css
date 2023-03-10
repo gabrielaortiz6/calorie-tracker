@@ -27,6 +27,7 @@
   justify-content: center;
 }
 
+
 @media screen and (min-width: 450px) {
   /* Styles for screens 450px and up */
   .container {

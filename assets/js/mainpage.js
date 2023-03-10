@@ -1,8 +1,12 @@
 const APP_ID = "2197e613";
 const APP_KEY = "49154045da302b5e11705006dfe3dfa6";
-var foodInput = document.getElementById("food-input");
+var enterBtn = document.getElementById("enter-btn");
+var submitBtn = document.getElementById("submit-btn");
+var foodInput = document.getElementById("food-type");
 console.log(foodInput);
 var currentDateText = $('#currentDay');
+var unitOptions = document.getElementById("unit-options")
+
 
 // DAYJS
 var currentDate = dayjs().format('dddd, MMMM D, YYYY');
@@ -36,9 +40,9 @@ function updateName () {
 updateName();
 
 // Submit button event listener for searching foods
-var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
+  document.getElementById("food-intake").style.visibility = "visible";
   var food = foodInput.value;
 
   // Fetch API
@@ -69,7 +73,7 @@ submitBtn.addEventListener("click", function (event) {
       var calorieAppend = document.getElementById("calories-total");
 
       var foodInputTextNode = document.createTextNode(food);
-      localStorage.setItem("food-input", food);
+      localStorage.setItem("food-type", food);
 
       var mealType = document.getElementById("meal-type").value;
 
@@ -98,95 +102,160 @@ submitBtn.addEventListener("click", function (event) {
         alert("Please choose a meal catagory.");
       }
 
-      // Conditions for filing nutrients
-      if (protein >= 0) {
-        var proteinListItem = proteinAppend.querySelector("li");
-        if (proteinListItem) {
-          var proteinValueElement =
-            proteinListItem.querySelector("span:last-child");
-          var existingProtein = parseFloat(proteinValueElement.textContent);
-          var newProtein = existingProtein + protein;
-          proteinValueElement.textContent = newProtein + "g";
-        } else {
-          var proteinLabel = document.createTextNode("Protein: ");
-          var proteinValue = document.createTextNode(protein + "g");
-          var proteinLI = document.createElement("li");
-          var proteinSpan = document.createElement("span");
-          proteinSpan.appendChild(proteinLabel);
-          proteinSpan.appendChild(proteinValue);
-          proteinLI.appendChild(proteinSpan);
-          proteinAppend.appendChild(proteinLI);
-        }
-        totalProtein += protein;
-        proteinTotalElement.textContent = "Protein: " + totalProtein + "g";
-      }
-
-      if (carbs >= 0) {
-        var carbsListItem = carbAppend.querySelector("li");
-        if (carbsListItem) {
-          var carbsValueElement =
-            carbsListItem.querySelector("span:last-child");
-          var existingCarbs = parseFloat(carbsValueElement.textContent);
-          var newCarbs = existingCarbs + carbs;
-          carbsValueElement.textContent = newCarbs + "g";
-        } else {
-          var carbsLabel = document.createTextNode("Carbs: ");
-          var carbsValue = document.createTextNode(carbs + "g");
-          var carbsLI = document.createElement("li");
-          var carbsSpan = document.createElement("span");
-          carbsSpan.appendChild(carbsLabel);
-          carbsSpan.appendChild(carbsValue);
-          carbsLI.appendChild(carbsSpan);
-          carbAppend.appendChild(carbsLI);
-        }
-        totalCarbs += carbs;
-        carbsTotalElement.textContent = "Carbs: " + totalCarbs + "g";
-      }
-
-      if (fat >= 0) {
-        var fatListItem = fatAppend.querySelector("li");
-        if (fatListItem) {
-          var fatValueElement = fatListItem.querySelector("span:last-child");
-          var existingFat = parseFloat(fatValueElement.textContent);
-          var newFat = existingFat + fat;
-          fatValueElement.textContent = newFat + "g";
-        } else {
-          var fatLabel = document.createTextNode("Fats: ");
-          var fatValue = document.createTextNode(fat + "g");
-          var fatLI = document.createElement("li");
-          var fatSpan = document.createElement("span");
-          fatSpan.appendChild(fatLabel);
-          fatSpan.appendChild(fatValue);
-          fatLI.appendChild(fatSpan);
-          fatAppend.appendChild(fatLI);
-        }
-        totalFat += fat;
-        fatsTotalElement.textContent = "Fats: " + totalFat + "g";
-      }
-
-      if (calories >= 0) {
-        var caloriesListItem = calorieAppend.querySelector("li");
-        if (caloriesListItem) {
-          var caloriesValueElement =
-            caloriesListItem.querySelector("span:last-child");
-          var existingCalories = parseFloat(caloriesValueElement.textContent);
-          var newCalories = existingCalories + calories;
-          caloriesValueElement.textContent = newCalories;
-        } else {
-          var caloriesLabel = document.createTextNode("Calories: ");
-          var caloriesValue = document.createTextNode(calories);
-          var caloriesLI = document.createElement("li");
-          var caloriesSpan = document.createElement("span");
-          caloriesSpan.appendChild(caloriesLabel);
-          caloriesSpan.appendChild(caloriesValue);
-          caloriesLI.appendChild(caloriesSpan);
-          calorieAppend.appendChild(caloriesLI);
-        }
-        totalCalories += calories;
-        caloriesTotalElement.textContent = "Calories: " + totalCalories;
-      }
     })
     .catch((error) => {
       console.log(error);
     });
 });
+
+
+
+
+// Event listener for Enter button to accept units and quantity of food to accurately calculate nutrients 
+enterBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  var units = document.getElementById("unit-input").value
+  var unitInput = units;
+  var quantity = document.getElementById("quantity-input").value;
+  var quantityInput = quantity;
+  // var foodElement =
+  // var measureURI = 
+  console.log(unitInput);
+  console.log(quantityInput);
+  const APP_ID = "2197e613";
+  const APP_KEY = "49154045da302b5e11705006dfe3dfa6";
+  fetch(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${APP_ID}&app_key=${APP_KEY}`, {
+    method: "POST",
+    headers: new Headers({ 'content-type': 'application/json' }),
+    body: JSON.stringify({
+      ingredients: [
+        {
+          quantity: quantityInput, // Throwing error code currently *cannot be parsed*
+          measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit", //comes from your measure uri that you will save to your option's "value" attribute
+          foodId: "food_bmyxrshbfao9s1amjrvhoauob6mo" // comes from the food that you select for your user
+        }
+      ]
+    })
+  }).then(response => response.json())
+  .then(data => console.log(data)
+  
+  );
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Conditions for filing nutrients
+      // if (protein >= 0) {
+      //   var proteinListItem = proteinAppend.querySelector("li");
+      //   if (proteinListItem) {
+      //     var proteinValueElement =
+      //       proteinListItem.querySelector("span:last-child");
+      //     var existingProtein = parseFloat(proteinValueElement.textContent);
+      //     var newProtein = existingProtein + protein;
+      //     proteinValueElement.textContent = newProtein + "g";
+      //   } else {
+      //     var proteinLabel = document.createTextNode("Protein: ");
+      //     var proteinValue = document.createTextNode(protein + "g");
+      //     var proteinLI = document.createElement("li");
+      //     var proteinSpan = document.createElement("span");
+      //     proteinSpan.appendChild(proteinLabel);
+      //     proteinSpan.appendChild(proteinValue);
+      //     proteinLI.appendChild(proteinSpan);
+      //     proteinAppend.appendChild(proteinLI);
+      //   }
+      //   totalProtein += protein;
+      //   proteinTotalElement.textContent = "Protein: " + totalProtein + "g";
+      // }
+
+      // if (carbs >= 0) {
+      //   var carbsListItem = carbAppend.querySelector("li");
+      //   if (carbsListItem) {
+      //     var carbsValueElement =
+      //       carbsListItem.querySelector("span:last-child");
+      //     var existingCarbs = parseFloat(carbsValueElement.textContent);
+      //     var newCarbs = existingCarbs + carbs;
+      //     carbsValueElement.textContent = newCarbs + "g";
+      //   } else {
+      //     var carbsLabel = document.createTextNode("Carbs: ");
+      //     var carbsValue = document.createTextNode(carbs + "g");
+      //     var carbsLI = document.createElement("li");
+      //     var carbsSpan = document.createElement("span");
+      //     carbsSpan.appendChild(carbsLabel);
+      //     carbsSpan.appendChild(carbsValue);
+      //     carbsLI.appendChild(carbsSpan);
+      //     carbAppend.appendChild(carbsLI);
+      //   }
+      //   totalCarbs += carbs;
+      //   carbsTotalElement.textContent = "Carbs: " + totalCarbs + "g";
+      // }
+
+      // if (fat >= 0) {
+      //   var fatListItem = fatAppend.querySelector("li");
+      //   if (fatListItem) {
+      //     var fatValueElement = fatListItem.querySelector("span:last-child");
+      //     var existingFat = parseFloat(fatValueElement.textContent);
+      //     var newFat = existingFat + fat;
+      //     fatValueElement.textContent = newFat + "g";
+      //   } else {
+      //     var fatLabel = document.createTextNode("Fats: ");
+      //     var fatValue = document.createTextNode(fat + "g");
+      //     var fatLI = document.createElement("li");
+      //     var fatSpan = document.createElement("span");
+      //     fatSpan.appendChild(fatLabel);
+      //     fatSpan.appendChild(fatValue);
+      //     fatLI.appendChild(fatSpan);
+      //     fatAppend.appendChild(fatLI);
+      //   }
+      //   totalFat += fat;
+      //   fatsTotalElement.textContent = "Fats: " + totalFat + "g";
+      // }
+
+      // if (calories >= 0) {
+      //   var caloriesListItem = calorieAppend.querySelector("li");
+      //   if (caloriesListItem) {
+      //     var caloriesValueElement =
+      //       caloriesListItem.querySelector("span:last-child");
+      //     var existingCalories = parseFloat(caloriesValueElement.textContent);
+      //     var newCalories = existingCalories + calories;
+      //     caloriesValueElement.textContent = newCalories;
+      //   } else {
+      //     var caloriesLabel = document.createTextNode("Calories: ");
+      //     var caloriesValue = document.createTextNode(calories);
+      //     var caloriesLI = document.createElement("li");
+      //     var caloriesSpan = document.createElement("span");
+      //     caloriesSpan.appendChild(caloriesLabel);
+      //     caloriesSpan.appendChild(caloriesValue);
+      //     caloriesLI.appendChild(caloriesSpan);
+      //     calorieAppend.appendChild(caloriesLI);
+      //   }
+      //   totalCalories += calories;
+      //   caloriesTotalElement.textContent = "Calories: " + totalCalories;
+      // }
