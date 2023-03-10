@@ -27,6 +27,14 @@ fatsTotalElement.textContent = "Fats: " + totalFat + "g";
 var caloriesTotalElement = document.getElementById("calories-total");
 caloriesTotalElement.textContent = "Calories: " + totalCalories;
 
+//retrieving name
+function updateName () {
+  var storedName = localStorage.getItem("name");
+  document.querySelector('#user-name').textContent = storedName;
+}
+
+updateName();
+
 // Submit button event listener for searching foods
 var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener("click", function (event) {

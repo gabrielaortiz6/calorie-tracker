@@ -8,6 +8,7 @@ var userDurationInput = $('#duration-input');
 var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
+var userNameEl = $('#user-name');
 //variable for current date
 var currentDateText = $('#currentDay');
 
@@ -112,6 +113,14 @@ var availableExercises = [
 
 $(document).ready(function () {
 
+    //retrieving name
+    function updateName () {
+        var storedName = localStorage.getItem("name");
+        userNameEl.text(storedName);
+    }
+
+    updateName();
+    
     // function for autocomplete
         $('#exercise-input').autocomplete({
            messages: null,
@@ -196,7 +205,6 @@ $(document).ready(function () {
     //function for processing and storing the inputs
     function processInput(event) {
         event.preventDefault();
-
     
         //var exercise = userExerciseInput.val();
         var duration = userDurationInput.val();
@@ -242,27 +250,6 @@ $(document).ready(function () {
             console.log(caloriesBurned);
              //stack overflow helped me here. creating objects out of inputs to add to the empty array
              exercisesArray.push({ exercise: exercise, duration: duration, calories: caloriesBurned });
-
-
-
-
-
-function updateName() {
-  var nameInput = document.getElementById("nameInput");
-  localStorage.setItem("name", nameInput.value);
-  updateNameElement();
-}
-function updateNameElement() {
-  var nameElement = document.getElementById("name");
-  var name = localStorage.getItem("name");
-  if (name) {
-    nameElement.innerHTML = name;
-  }
-}
-
-window.onload = function () {
-  updateNameElement();
-};
 
              console.log(exercisesArray);
  
