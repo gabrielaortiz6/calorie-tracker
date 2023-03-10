@@ -84,3 +84,18 @@ th {
     height: auto;
     text-align: center;
 }
+
+/* @media screen and (min-width:450px) and (max-width: 768px) {
+    /* Styles for screens 768px and up
+    #exercise-table {
+        width: 65%;
+    }
+  }
+
+/* media query for small screens 
+@media screen and (max-width: 450px) {
+    /* Styles for screens up to 450px 
+    .header-row {
+      width: 50
+    }
+  }*/
