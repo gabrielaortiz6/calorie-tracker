@@ -117,9 +117,7 @@ enterBtn.addEventListener("click", function (event) {
   var units = document.getElementById("unit-input").value
   var unitInput = units;
   var quantity = document.getElementById("quantity-input").value;
-  var quantityInput = quantity;
-  // var foodElement =
-  // var measureURI = 
+  var quantityInput = Number(quantity); // Make sure quantityInput is a valid number
   console.log(unitInput);
   console.log(quantityInput);
   const APP_ID = "2197e613";
@@ -130,27 +128,26 @@ enterBtn.addEventListener("click", function (event) {
     body: JSON.stringify({
       ingredients: [
         {
-          quantity: quantityInput, // Throwing error code currently *cannot be parsed*
-          measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit", //comes from your measure uri that you will save to your option's "value" attribute
-          foodId: "food_bmyxrshbfao9s1amjrvhoauob6mo" // comes from the food that you select for your user
+          quantity: quantityInput,
+          measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          foodId: "food_bmyxrshbfao9s1amjrvhoauob6mo"
         }
-
       ]
-        totalCalories += calories;
-        caloriesTotalElement.textContent = "Calories: " + totalCalories;
-        
-         // Save the new calorie count to local storage
-         localStorage.setItem("totalCalories", totalCalories);
-      }
-
     })
-  }).then(response => response.json())
-  .then(data => console.log(data)
-  
-  );
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Update total calories and display in UI
+    let calories = data.totalNutrientsKCal.ENERC_KCAL.quantity;
+    totalCalories += calories;
+    caloriesTotalElement.textContent = "Calories: " + totalCalories;
+        
+    // Save the new calorie count to local storage
+    localStorage.setItem("totalCalories", totalCalories);
+  })
+  .catch(error => console.error(error));
 });
-
-
 
 
 
