@@ -83,8 +83,8 @@ var availableExercises = [
     {label: "Racquetball", value: "cquet"},
     {label: "Rollerblading", value: "blading"},
     {label: "Rollerskating", value: "skating"},
-    {label: "Rowing", value: "rowing"},
-    {label: "Rugby", value: "rugby"},
+    {label: "Rowing", value: "owing"},
+    {label: "Rugby", value: "ugby"},
     {label: "Running", value: "run"},
     {label: "Sailing", value: "sail"},
     {label: "Scuba diving", value: "scuba"},
@@ -119,8 +119,14 @@ $(document).ready(function () {
         userNameEl.text(storedName);
     }
 
-    updateName();
+    function retrieveTotalCalories () {
+        var totalCalories = localStorage.getItem("totalCalories");
+        document.querySelector('#calories').textContent = "Total Calories: " + totalCalories;
+    }
     
+    retrieveTotalCalories();
+    updateName();
+
     // function for autocomplete
         $('#exercise-input').autocomplete({
            messages: null,
