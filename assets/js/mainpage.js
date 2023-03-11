@@ -134,7 +134,15 @@ enterBtn.addEventListener("click", function (event) {
           measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit", //comes from your measure uri that you will save to your option's "value" attribute
           foodId: "food_bmyxrshbfao9s1amjrvhoauob6mo" // comes from the food that you select for your user
         }
+
       ]
+        totalCalories += calories;
+        caloriesTotalElement.textContent = "Calories: " + totalCalories;
+        
+         // Save the new calorie count to local storage
+         localStorage.setItem("totalCalories", totalCalories);
+      }
+
     })
   }).then(response => response.json())
   .then(data => console.log(data)
