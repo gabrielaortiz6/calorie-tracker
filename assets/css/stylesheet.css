@@ -20,10 +20,9 @@ header {
     z-index: -1;
   }
   
-  
-  
   body {
-    margin:0; background: rgb(239, 239, 239);
+    margin:0; 
+    background: rgb(239, 239, 239);
     font-family: "sans-serif", "Monaco";
     font-size: 30px;
 }
