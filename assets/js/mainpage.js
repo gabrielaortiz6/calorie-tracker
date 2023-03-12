@@ -139,12 +139,12 @@ enterBtn.addEventListener("click", function (event) {
   .then(data => {
     console.log(data);
     // Update total calories and display in UI
-    let calories = data.totalNutrientsKCal.ENERC_KCAL.quantity;
+     let calories = data.totalNutrientsKCal.ENERC_KCAL.quantity;
     totalCalories += calories;
-    caloriesTotalElement.textContent = "Calories: " + totalCalories;
+    caloriesTotalElement.textContent = "Calories: " + totalCalories; 
         
     // Save the new calorie count to local storage
-    localStorage.setItem("totalCalories", totalCalories);
+     localStorage.setItem("totalCalories", totalCalories); 
   })
   .catch(error => console.error(error));
 });
