@@ -25,7 +25,6 @@ th {
 }
 
 .exercise-list {
-
   display: flex;
   justify-content: center;
   justify-items: center;
@@ -93,7 +92,6 @@ th {
     width: 60rem;
     height: auto;
     text-align: center;
-
 }
 
 /* @media screen and (min-width:450px) and (max-width: 768px) { */
