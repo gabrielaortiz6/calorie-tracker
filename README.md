@@ -62,6 +62,8 @@ APIS used for this project:
 
 ### LINK TO DEPLOYED SITE
 
+[Link to Deployed Site](https://gabrielaortiz6.github.io/calorie-tracker/)
+
 ### Authors
 * Jason Lewis
 * Johnny Bonee
