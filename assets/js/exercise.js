@@ -140,11 +140,18 @@ $(document).ready(function () {
         $('#exercise-input').autocomplete({
            messages: null,
             source: availableExercises,
+
+          options: {
+            label: "label"
+          },
           select: function( event, ui ) {
+
             event.preventDefault();
+
             exerciseLabel = ui.item.label;
-            ('#exercise-input').textContent = ui.item.label;
-            exercise = ui.item.value;
+
+            ('#exercise-input').textContent = exerciseLabel;
+            exercise = ui.item.value
         },
         focus: function( event, ui) {
             event.preventDefault();
@@ -165,7 +172,7 @@ $(document).ready(function () {
 
         //loop through each object in the exercisesArray and call the add row function
         exercisesArray.forEach((obj) => {
-            addRow(obj.exercise, obj.duration, obj.calories);
+            addRow(obj.exerciseLabel, obj.duration, obj.calories);
         });
     };
 
@@ -180,6 +187,7 @@ $(document).ready(function () {
 
            // Add the data from local storage to the new row
            //change what exercise cell equals so it matches label of array
+
            exerciseCell.textContent = exerciseLabel;
            durationCell.textContent = duration;
            caloriesBurnedCell.textContent = calories;
@@ -248,7 +256,7 @@ $(document).ready(function () {
             var caloriesBurned = data[0].total_calories;
 
              //creating objects out of inputs to add to the empty array (source: Stack Overflow)
-             exercisesArray.push({ exercise: exercise, duration: duration, calories: caloriesBurned });
+             exercisesArray.push({ exercise: exercise, exerciseLabel: exerciseLabel, duration: duration, calories: caloriesBurned });
  
              //sets local storage with array
              localStorage.setItem("user inputs", JSON.stringify(exercisesArray));
