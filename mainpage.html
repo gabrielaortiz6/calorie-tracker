@@ -20,12 +20,12 @@
     <title>Food Intake</title>
   </head>
   <!--Header-->
-  <header class="flex justify-between p-10">
+  <header class="flex justify-between p-10 header">
 
     <p id="user-name"></p>
 
     <!--Current date display-->
-	<p id="currentDay" class="date text-1xl"></p>
+    <p id="currentDay" class="date text-1xl"></p>
 
     <div class="inline exercise-btn">
       <!--Button that takes you Exercise Input (Main) Page-->
@@ -40,7 +40,8 @@
       <!--Select Type of Meal-->
       <label for="meal-type" class="block mb-2 text-sm font-medium text-gray-900
         dark:text-white"><h3>Select a type of meal</h3></label>
-      <select id="meal-type" class="max-w-sm bg-gray-50 border border-gray-300
+      <select id="meal-type" class="text-center max-w-sm bg-gray-50 border
+        border-gray-300
         text-gray-900 text-sm rounded-lg focus:ring-blue-500
         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
@@ -55,18 +56,51 @@
       <div class="block mb-6 pt-16">
         <label for="food-input" class="text-center block mb-2 text-sm
           font-medium text-gray-900 dark:text-white"><h3>Enter food:</h3></label>
-        <input type="text" id="food-input" class="bg-gray-50 border
+        <input type="text" id="food-type" class="text-center bg-gray-50 border
           border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
           focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
           dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-          dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+          dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Please Enter a Food" required>
       </div>
-      <!--Submit Button-->
+      <!-- Submit button for type of food -->
       <button class="max-w-md mb-2 bg-white hover:bg-gray-100 text-gray-800
         font-semibold py-2 px-4 border border-gray-400 rounded shadow"
         id="submit-btn">
-        Enter
+        Submit
       </button>
+      <!--Food Intake Amount-->
+      <div id="food-intake" class="block mb-6 pt-16 flex flex-col invisible">
+        <!-- Label for Enter your food quantity -->
+        <label for="food-input" class="text-center block mb-2 text-sm
+          font-medium text-gray-900 dark:text-white"><h3>Enter your food
+            quantity:</h3></label>
+        <!-- Text box to enter your quantity -->
+        <input type="text" id="quantity-input" class="text-center bg-gray-50
+          border
+          border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+          dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+          dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Please Enter a Quantity" required>
+        <!-- Select your type of units -->
+        <select type="text" id="unit-options" class="text-center bg-gray-50
+          border
+          border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+          focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+          dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+          dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4" required>
+          <option selected required id="unit-input">Choose your unit of
+            measurement</option>
+        </select>
+        <!--Submit Button-->
+        <button class="w-45 p-3 mb-2 bg-white hover:bg-gray-100 text-gray-800
+          font-semibold py-2 px-4 border border-gray-400 rounded shadow flex
+          justify-center m-auto mt-4"
+          id="enter-btn">
+          Enter
+        </button>
+      </div>
     </form>
 
     <!--Tailwind styled grid for user inputs to be displayed-->
@@ -175,8 +209,8 @@
           <li><span id="calories-total"></span></li>
         </ul>
       </section>
-      </section>
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script src="./assets/js/mainpage.js"></script>
-    </body>
-  </html>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/mainpage.js"></script>
+  </body>
+</html>
