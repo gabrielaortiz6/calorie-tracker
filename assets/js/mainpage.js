@@ -119,6 +119,8 @@ submitBtn.addEventListener("click", function (event) {
         }
         totalProtein += protein;
         proteinTotalElement.textContent = "Protein: " + totalProtein + "g";
+
+        localStorage.setItem("totalProtein", totalProtein);
       }
 
       if (carbs >= 0) {
@@ -141,6 +143,8 @@ submitBtn.addEventListener("click", function (event) {
         }
         totalCarbs += carbs;
         carbsTotalElement.textContent = "Carbs: " + totalCarbs + "g";
+
+        localStorage.setItem("totalCarbs", totalCarbs);
       }
 
       if (fat >= 0) {
@@ -162,6 +166,8 @@ submitBtn.addEventListener("click", function (event) {
         }
         totalFat += fat;
         fatsTotalElement.textContent = "Fats: " + totalFat + "g";
+
+        localStorage.setItem("totalFats", totalFat)
       }
 
       if (calories >= 0) {
