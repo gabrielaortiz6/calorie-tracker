@@ -57,10 +57,20 @@ submitBtn.addEventListener("click", function (event) {
       console.log(nutrients);
       var protein = nutrients.PROCNT;
       console.log("Protein: " + protein);
+
+      //set to local storage
+      localStorage.setItem("totalProtein", protein)
+
       var carbs = nutrients.CHOCDF;
       console.log("Carbs: " + carbs);
+      //set to local storage
+      localStorage.setItem("totalCarbs", carbs)
+
       var fat = nutrients.FAT;
       console.log("Fats: " + fat);
+      //set to local storage
+      localStorage.setItem("totalFats", fat)
+
       var calories = nutrients.ENERC_KCAL;
       console.log("Calories for " + food + ": " + calories);
       var breakfast = document.getElementById("breakfast").value;
@@ -101,6 +111,15 @@ submitBtn.addEventListener("click", function (event) {
       } else {
         alert("Please choose a meal catagory.");
       }
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+
+
 
 // Event listener for Enter button to accept units and quantity of food to accurately calculate nutrients 
 enterBtn.addEventListener("click", function (event) {
