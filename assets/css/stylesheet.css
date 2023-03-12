@@ -1,39 +1,40 @@
 header {
-    margin: 0; padding: 2em 5em 4em; color: #efefef;
-    overflow:hidden;
-    position: relative;
-  }
-  
-  header::after {
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    height: 100%;
-    width:100%;
-    transform: skewY(-4deg);
-    background: #413DA4;
-    background: -moz-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
-    background: -webkit-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
-    background: linear-gradient(to right, #413DA4 0%, #4157A5 21%, #661784 100%);
-    transform-origin: bottom left;
-    z-index: -1;
-  }
-  
-  
-  
-  body {
-    margin:0; background: rgb(239, 239, 239);
-    font-family: "sans-serif", "Monaco";
-    font-size: 30px;
+  margin: 0;
+  padding: 2em 5em 4em;
+  color: #efefef;
+  overflow: hidden;
+  position: relative;
 }
 
-  div {
-    padding: 4em 4em 0;
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: skewY(-4deg);
+  background: #413DA4;
+  background: -moz-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
+  background: -webkit-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
+  background: linear-gradient(to right, #413DA4 0%, #4157A5 21%, #661784 100%);
+  transform-origin: bottom left;
+  z-index: -1;
+}
+
+body {
+  margin: 0;
+  background: rgb(239, 239, 239);
+  font-family: "sans-serif", "Monaco";
+  font-size: 30px;
+}
+
+div {
+  padding: 4em 4em 0;
 }
 
 h1 {
-    text-shadow: 6px 6px 6px #050505;
+  text-shadow: 6px 6px 6px #050505;
 }
 
 a {
@@ -53,41 +54,64 @@ a:active {
     transition: opacity .5s;
 }
 
+a {
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  position: relative;
+}
+
+a:hover {
+  transform: scale(0.98);
+}
+
+a:active {
+  transform: scale(0.98);
+  box-shadow:3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    opacity: 0.5;
+    transition: opacity .5s;
+}
 
 @media screen and (min-width: 450px) {
-    /* Styles for screens 450px and up */
-    .container {
-      max-width: 768px;
-      margin: 0 auto;
-    }
-    .text-8xl {
-      font-size: 6rem;
-    }
+
+  /* Styles for screens 450px and up */
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
   }
-  
-  @media screen and (min-width: 768px) {
-    /* Styles for screens 768px and up */
-    .container {
-      max-width: 992px;
-    }
-    .text-8xl {
-      font-size: 7rem;
-    }
+
+  .text-8xl {
+    font-size: 6rem;
   }
-  
-  @media screen and (min-width: 992px) {
-    /* Styles for screens 992px and up */
-    .container {
-      max-width: 1200px;
-    }
-    .text-8xl {
-      font-size: 8rem;
-    }
+}
+
+@media screen and (min-width: 768px) {
+
+  /* Styles for screens 768px and up */
+  .container {
+    max-width: 992px;
   }
-  
-  @media screen and (max-width: 450px) {
-    /* Styles for screens up to 450px */
-    .text-8xl {
-      font-size: 4rem;
-    }
+
+  .text-8xl {
+    font-size: 7rem;
   }
+}
+
+@media screen and (min-width: 992px) {
+
+  /* Styles for screens 992px and up */
+  .container {
+    max-width: 1200px;
+  }
+
+  .text-8xl {
+    font-size: 8rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  /* Styles for screens up to 450px */
+  .text-8xl {
+    font-size: 4rem;
+  }
+}
