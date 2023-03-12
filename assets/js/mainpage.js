@@ -102,15 +102,6 @@ submitBtn.addEventListener("click", function (event) {
         alert("Please choose a meal catagory.");
       }
 
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
-
-
-
 // Event listener for Enter button to accept units and quantity of food to accurately calculate nutrients 
 enterBtn.addEventListener("click", function (event) {
   event.preventDefault();

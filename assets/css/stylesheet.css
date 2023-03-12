@@ -54,6 +54,22 @@ a:active {
     transition: opacity .5s;
 }
 
+a {
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  position: relative;
+}
+
+a:hover {
+  transform: scale(0.98);
+}
+
+a:active {
+  transform: scale(0.98);
+  box-shadow:3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    opacity: 0.5;
+    transition: opacity .5s;
+}
 
 @media screen and (min-width: 450px) {
 
