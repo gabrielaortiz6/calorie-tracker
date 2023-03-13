@@ -23,13 +23,14 @@
   <link rel="stylesheet" href="./assets/css/exercise.css" />
   <title>Exercises</title>
 </head>
-<!--Header-->
+
 
 <header id="header" class="text-white text-2xl flex justify-between p-5">
   <div class="flex flex-col items-center justify-center text-white text-2xl">
     <p id="user-name" class="text-white text-2xl mb-4 mt-4"></p>
     <p class="mb-8 underline">Exercises</p>
   </div>
+
    <!--Current date display-->
 	<p id="currentDay" class="mt-7 date text-1xl"></p>
 
@@ -56,7 +57,7 @@
       <label for="duration-input" class="text-center font-semibold block mb-2 text-gray-900 dark:text-white">
         <h3>Duration (in minutes): </h3>
       </label>
-      <input type="text" id="duration-input" placeholder="Duration of exercise" required
+      <input type="number" min="5" max="180" id="duration-input" placeholder="Duration of exercise" required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
     </div>
@@ -97,11 +98,13 @@
     <h6 class="daily-totals flex justify-center p">Daily totals:</h6>
   </div>
   <section class="macros flex justify-center">
+
     <ul>
       <li class="ml-8"><span id="protein-total">Proteins: </span></li>
       <li class="ml-8"><span id="carbs-total">Carbs: </span></li>
       <li class="ml-8"><span id="fats-total">Fats: </span></li>
       <li class="ml-8"><span id="calories"></span></li>
+
     </ul>
   </section>
   <!--JQuery & JQuery UI Links-->
