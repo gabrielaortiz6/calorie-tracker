@@ -39,9 +39,8 @@ function updateName() {
 updateName();
 
 // Submit button event listener for searching foods
-submitBtn.addEventListener("click", function (event) {
+enterBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  document.getElementById("food-intake").style.visibility = "visible";
   var food = foodInput.value;
 
   // Fetch API
@@ -106,6 +105,12 @@ submitBtn.addEventListener("click", function (event) {
       } else {
         alert("Please choose a meal catagory.");
       }
+            // Hide food intake section
+            document.getElementById("food-intake").style.visibility = "hidden";
+            // Reset meal type section
+            document.getElementById("meal-type").selectedIndex = 0;
+            // Clear food type input field
+            foodInput.value = "";
     })
     .catch((error) => {
       console.log(error);
@@ -136,8 +141,9 @@ var totalCalories = 0;
 var units = unitInput.value;
 
 // Event listener for Enter button to accept units and quantity of food to accurately calculate nutrients
-enterBtn.addEventListener("click", function (event) {
+submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
+  document.getElementById("food-intake").style.visibility = "visible";
   var quantityInput = document.getElementById("quantity-input");
   var foodInput = document.getElementById("food-type");
   var foodInputFetch = foodInput.value;
@@ -149,13 +155,6 @@ enterBtn.addEventListener("click", function (event) {
   console.log(units);
   console.log(quantityInputNumber);
 
-  // Hide food intake section
-document.getElementById("food-intake").style.visibility = "hidden";
-// Reset meal type section
-document.getElementById("meal-type").selectedIndex = 0;
-// Clear food type input field
-foodInput.value = "";
-
   // Fetch the input of the users food
   fetch(
     `https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${APP_KEY}&ingr=${foodInput.value}`
@@ -166,19 +165,14 @@ foodInput.value = "";
 
       // Retrieve food id, nutrients, and measurement URI from edamam API
       var foodIdFetch = data.hints[0].food.foodId;
-      console.log(foodIdFetch)
+      console.log(foodIdFetch);
       var protein = data.hints[0].food.nutrients.PROCNT;
       var carbs = data.hints[0].food.nutrients.CHOCDF;
       var fat = data.hints[0].food.nutrients.FAT;
       var calories = data.hints[0].food.nutrients.ENERC_KCAL;
-      var measureURI = data.hints[0].measures[0].uri;
-      console.log(measureURI);
 
       // Update total nutrients and UI
       updateNutrientInfo(protein, carbs, fat, calories);
-
-      // Fill out unit options based on food measurement URI
-      fillUnitOptions(measureURI);
 
       // Make POST request to API with retrieved data
       fetch(
@@ -190,7 +184,7 @@ foodInput.value = "";
             ingredients: [
               {
                 quantity: quantityInputNumber,
-                measureURI: measureURI,
+                measureURI: fillUnitOptions(),
                 foodId: foodIdFetch,
               },
             ],
@@ -217,7 +211,7 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
       var newProtein = existingProtein + protein;
       proteinValueElement.textContent = newProtein + protein + "g";
     } else if (proteinAppend) {
-      //  add this check to prevent null error
+      //  Add this check to prevent null error
       var proteinLabel = document.createTextNode("Protein: ");
       var proteinValue = document.createTextNode(protein + "g");
       var proteinLI = document.createElement("li");
@@ -239,6 +233,7 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
       var existingNutrient = parseFloat(nutrientValueElement.textContent);
       var newCarb = existingNutrient + carbs;
       nutrientValueElement.textContent = newCarb + carbs + "g";
+      //  Add this check to prevent null error
     } else if (carbAppend) {
       var nutrientLabel = document.createTextNode("Carbs: ");
       var nutrientValue = document.createTextNode(carbs + "g");
@@ -260,6 +255,7 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
       var existingFat = parseFloat(fatValueElement.textContent);
       var newFat = existingFat + fat;
       fatValueElement.textContent = newFat + fat + "g";
+      //  Add this check to prevent null error
     } else if (fatAppend) {
       var fatLabel = document.createTextNode("Fats: ");
       var fatValue = document.createTextNode(fat + "g");
@@ -282,6 +278,7 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
       var existingCalories = parseFloat(caloriesValueElement.textContent);
       var newCalories = existingCalories + calories;
       caloriesValueElement.textContent = newCalories + calories;
+      //  Add this check to prevent null error
     } else if (calorieAppend) {
       var caloriesLabel = document.createTextNode("Calories: ");
       var caloriesValue = document.createTextNode(calories);
@@ -297,30 +294,33 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
   }
 }
 
-function fillUnitOptions(measureURI) {
-  var options = "";
-  switch (measureURI) {
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_scoop":
-      options = "<option value='scoop'>Scoop</option>";
-      break;
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_gram":
-      options = "<option value='gram'>Gram</option>";
-      break;
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce":
-      options = "<option value='ounce'>Ounce</option>";
-      break;
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_pound":
-      options = "<option value='pound'>Pound</option>";
-      break;
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_tablespoon":
-      options = "<option value='tablespoon'>Tablespoon</option>";
-      break;
-    case "http://www.edamam.com/ontologies/edamam.owl#Measure_teaspoon":
-      options = "<option value='teaspoon'>Teaspoon</option>";
-      break;
-    default:
-      options = "<option value='na'>N/A</option>";
-      break;
-  }
-  unitInput.innerHTML = options;
+function fillUnitOptions() {
+  const foodTypeInput = document.getElementById('food-type');
+  const foodType = foodTypeInput.value;
+
+  fetch(
+    `https://api.edamam.com/api/food-database/v2/parser?ingr=${foodType}&app_id=${APP_ID}&app_key=${APP_KEY}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const measures = data.hints[0].measures;
+      const measureLabels = [];
+
+      for (let i = 0; i < measures.length; i++) {
+        const measureLabel = measures[i].label;
+        measureLabels.push(measureLabel);
+      }
+
+      const unitInput = document.getElementById('unit-options');
+      unitInput.innerHTML = '';
+      for (let i = 0; i < measureLabels.length; i++) {
+        const option = document.createElement('option');
+        option.value = measureLabels[i];
+        option.text = measureLabels[i];
+        unitInput.add(option);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
 }
