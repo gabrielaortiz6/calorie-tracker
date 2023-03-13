@@ -174,9 +174,6 @@ submitBtn.addEventListener("click", function (event) {
       // Update total nutrients and UI
       updateNutrientInfo(protein, carbs, fat, calories);
 
-      // Fill out unit options based on food measurement URI
-      fillUnitOptions();
-
       // Make POST request to API with retrieved data
       fetch(
         `https://api.edamam.com/api/food-database/v2/nutrients?app_id=${APP_ID}&app_key=${APP_KEY}`,
@@ -298,14 +295,32 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
 }
 
 function fillUnitOptions() {
+  const foodTypeInput = document.getElementById('food-type');
+  const foodType = foodTypeInput.value;
+
   fetch(
-    `https://api.edamam.com/api/food-database/v2/nutrients?app_id=${APP_ID}&app_key=${APP_KEY}`
+    `https://api.edamam.com/api/food-database/v2/parser?ingr=${foodType}&app_id=${APP_ID}&app_key=${APP_KEY}`
   )
     .then((response) => response.json())
     .then((data) => {
-      for (let i = 0; i < data.hints.measures.uri.length; i++) {
-        let measuresURI = data.hints.measures.uri[i];
-        console.log(measuresURI);
+      const measures = data.hints[0].measures;
+      const measureLabels = [];
+
+      for (let i = 0; i < measures.length; i++) {
+        const measureLabel = measures[i].label;
+        measureLabels.push(measureLabel);
       }
+
+      const unitInput = document.getElementById('unit-options');
+      unitInput.innerHTML = '';
+      for (let i = 0; i < measureLabels.length; i++) {
+        const option = document.createElement('option');
+        option.value = measureLabels[i];
+        option.text = measureLabels[i];
+        unitInput.add(option);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
     });
 }
