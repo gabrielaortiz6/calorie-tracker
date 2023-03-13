@@ -25,22 +25,26 @@
 </head>
 <!--Header-->
 
-<header class="flex justify-between p-5">
-  <p id="user-name"></p>
-
+<header id="header" class="text-white text-2xl flex justify-between p-5">
+  <div class="flex flex-col items-center justify-center text-white text-2xl">
+    <p id="user-name" class="text-white text-2xl mb-4 mt-4"></p>
+    <p class="mb-8 underline">Exercises</p>
+  </div>
    <!--Current date display-->
-	<p id="currentDay" class="date text-1xl"></p>
+	<p id="currentDay" class="mt-7 date text-1xl"></p>
 
   <!--Button that takes you back to Calorie Input (Main) Page-->
   <div>
     <a href="mainpage.html"><button
-        class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 mr-10 px-4 border border-gray-400 rounded shadow"
+        class="mt-7 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 mr-10 px-4 border border-gray-400 rounded shadow"
         id="add-calorie-btn">Add Calories</button></a>
   </div>
 </header>
 
+<!-- Providing space between -->
+</br></br></br></br></br></br></br></br>
 <!--Input Form-->
-<body class="flex flex-col">
+<body class="bg-gray-300 flex flex-col">
   <form class="exercise-form flex flex-col justify-center items-center">
     <!--Enter Exercise Input with Autocomplete-->
     <div class="ui-widget">
@@ -93,11 +97,11 @@
     <h6 class="daily-totals flex justify-center p">Daily totals:</h6>
   </div>
   <section class="macros flex justify-center">
-    <ul class="ml-5">
-      <li><span id="protein-total">Proteins: </span></li>
-      <li><span id="carbs-total">Carbs: </span></li>
-      <li><span id="fats-total">Fats: </span></li>
-      <li><span id="calories"></span></li>
+    <ul>
+      <li class="ml-8"><span id="protein-total">Proteins: </span></li>
+      <li class="ml-8"><span id="carbs-total">Carbs: </span></li>
+      <li class="ml-8"><span id="fats-total">Fats: </span></li>
+      <li class="ml-8"><span id="calories"></span></li>
     </ul>
   </section>
   <!--JQuery & JQuery UI Links-->
