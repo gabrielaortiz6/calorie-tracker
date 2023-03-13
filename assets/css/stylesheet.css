@@ -54,7 +54,6 @@ a:active {
     transition: opacity .5s;
 }
 
-
 @media screen and (min-width: 450px) {
 
   /* Styles for screens 450px and up */
@@ -95,7 +94,21 @@ a:active {
 @media screen and (max-width: 450px) {
 
   /* Styles for screens up to 450px */
-  .text-8xl {
+
+  /* TRIED TO FIX LANDING PAGE HEADER ISSUE BUT DIDN'T WORK */
+  header.hero {
+    text-align: left;
+    padding-left: 0px;
+  }
+
+#textshadow {
+    margin: auto;
+    text-align: center;
     font-size: 4rem;
+  }
+
+  p#currentDate.text-5xl {
+    font-size: 2rem;
+    text-align: center;
   }
 }

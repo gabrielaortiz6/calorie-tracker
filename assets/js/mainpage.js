@@ -56,10 +56,20 @@ submitBtn.addEventListener("click", function (event) {
       console.log(nutrients);
       var protein = nutrients.PROCNT;
       console.log("Protein: " + protein);
+
+      //set to local storage
+      localStorage.setItem("totalProtein", protein)
+
       var carbs = nutrients.CHOCDF;
       console.log("Carbs: " + carbs);
+      //set to local storage
+      localStorage.setItem("totalCarbs", carbs)
+
       var fat = nutrients.FAT;
       console.log("Fats: " + fat);
+      //set to local storage
+      localStorage.setItem("totalFats", fat)
+
       var calories = nutrients.ENERC_KCAL;
       console.log("Calories for " + food + ": " + calories);
       var breakfast = document.getElementById("breakfast").value;
@@ -192,7 +202,9 @@ foodInput.value = "";
           console.log(data);
         });
     })
+
     .catch((error) => console.error(error));
+
 });
 
 function updateNutrientInfo(protein, carbs, fat, calories) {

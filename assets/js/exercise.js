@@ -1,7 +1,3 @@
-// API key for calories burned API
-
-
-
 //var exerciseAPIKey = 'BN9muUJAIB/KbJBS1hPo0g==sL04lBW2RLHAQr7Q';
 var userExerciseInput = $('#exercise-input');
 var userDurationInput = $('#duration-input');
@@ -9,22 +5,24 @@ var submitExerciseBtn = $('#exercise-btn');
 var exerciseTable = document.querySelector('#exercise-table');
 var tableBody = $('.table-body');
 var userNameEl = $('#user-name');
-//variable for current date
-var currentDateText = $('#currentDay');
-
-
-//code for current date to apply on page
-
-// DAYJS
-var currentDate = dayjs().format('dddd, MMMM D, YYYY');
-currentDateText.text(currentDate);
-
+var totalProteinEl = document.querySelector('#protein-total');
+var totalFatsEl = document.querySelector('#fats-total');
+var totalCarbsEl = document.querySelector('#carbs-total')
+var caloriesEl = document.querySelector('#calories');
+var storedCalories = 0;
 //empty variables
 var caloriesBurned = "";
 var exercise = "";
 var exerciseLabel = "";
 //empty array of objects in order to store exercise and duration inputs, and calories burned 
 var exercisesArray = [];
+
+//variable for current date
+var currentDateText = $('#currentDay');
+
+//code for current date to apply on page
+var currentDate = dayjs().format('dddd, MMMM D, YYYY');
+currentDateText.text(currentDate);
 
 //autofill options
 var availableExercises = [
@@ -120,10 +118,21 @@ $(document).ready(function () {
     }
 
     function retrieveTotalCalories () {
-        var totalCalories = localStorage.getItem("totalCalories");
-        document.querySelector('#calories').textContent = "Total Calories: " + totalCalories;
+        storedCalories = localStorage.getItem("totalCalories");
+        caloriesEl.textContent = "Total Calories: " + storedCalories;
+    }
+
+    function retrieveMacros () {
+        storedFats = localStorage.getItem("totalFats");
+        storedCarbs = localStorage.getItem("totalCarbs");
+        storedProtein = localStorage.getItem("totalProtein");
+
+        totalFatsEl.textContent =  "Fats: " + storedFats;
+        totalCarbsEl.textContent = "Carbs: " + storedCarbs;
+        totalProteinEl.textContent = "Protein: " + storedProtein;
     }
     
+    retrieveMacros();
     retrieveTotalCalories();
     updateName();
 
@@ -131,11 +140,18 @@ $(document).ready(function () {
         $('#exercise-input').autocomplete({
            messages: null,
             source: availableExercises,
+
+          options: {
+            label: "label"
+          },
           select: function( event, ui ) {
+
             event.preventDefault();
+
             exerciseLabel = ui.item.label;
-            ('#exercise-input').textContent = ui.item.label;
-            exercise = ui.item.value;
+
+            ('#exercise-input').textContent = exerciseLabel;
+            exercise = ui.item.value
         },
         focus: function( event, ui) {
             event.preventDefault();
@@ -156,11 +172,11 @@ $(document).ready(function () {
 
         //loop through each object in the exercisesArray and call the add row function
         exercisesArray.forEach((obj) => {
-            addRow(obj.exercise, obj.duration, obj.calories);
+            addRow(obj.exerciseLabel, obj.duration, obj.calories);
         });
     };
 
-    function addRow(exercise, duration, calories) {
+    function addRow(exerciseLabel, duration, calories) {
            // Create a new table row
            var newRow = document.createElement('tr');
            newRow.classList.add("table-row");
@@ -171,6 +187,7 @@ $(document).ready(function () {
 
            // Add the data from local storage to the new row
            //change what exercise cell equals so it matches label of array
+
            exerciseCell.textContent = exerciseLabel;
            durationCell.textContent = duration;
            caloriesBurnedCell.textContent = calories;
@@ -183,7 +200,7 @@ $(document).ready(function () {
            // Check if the data is already in the table (source: Stack Overflow)
            var exerciseInTable = Array.from(exerciseTable.querySelectorAll('td:first-child'))
                .map((cell) => cell.textContent)
-               .includes(exercise);
+               .includes(exerciseLabel);
 
            // Skip adding the data if it already exists
            if (exerciseInTable) {
@@ -192,20 +209,6 @@ $(document).ready(function () {
 
            // Append the new row to the table
            exerciseTable.appendChild(newRow);
-    }
-
-    //function to append fetched data to table
-    function appendCaloriesBurned(data) {
-
-        var caloriesBurnedCell = $('.calories-burned');
-        //target cells we created
-        caloriesBurnedCell.each(function () {
-
-            if (caloriesBurnedCell.text() === "") {
-                //set value of new cell to parameter
-                caloriesBurnedCell.text(data);
-            }
-        });
     }
 
     //function for processing and storing the inputs
@@ -229,7 +232,6 @@ $(document).ready(function () {
         //empties the user input area after submitting input with click
         userExerciseInput.val("");
         userDurationInput.val("");
-
     }
 
     // exercise and duration will be parameters
@@ -251,20 +253,23 @@ $(document).ready(function () {
                 return response.json();
             }
         }).then(function (data) {
-            console.log(data);
             var caloriesBurned = data[0].total_calories;
-            console.log(caloriesBurned);
-             //stack overflow helped me here. creating objects out of inputs to add to the empty array
-             exercisesArray.push({ exercise: exercise, duration: duration, calories: caloriesBurned });
 
-             console.log(exercisesArray);
+             //creating objects out of inputs to add to the empty array (source: Stack Overflow)
+             exercisesArray.push({ exercise: exercise, exerciseLabel: exerciseLabel, duration: duration, calories: caloriesBurned });
  
              //sets local storage with array
              localStorage.setItem("user inputs", JSON.stringify(exercisesArray));
              retrieveStorage();
+
+            //subtracts caloriesBurned from storedCalories
+             var totalCalories = storedCalories -= caloriesBurned;
+             caloriesEl.textContent = "Total Calories: " + totalCalories;
+
         });
     };
 
+    //click event
     submitExerciseBtn.on('click', processInput);
 });
 
