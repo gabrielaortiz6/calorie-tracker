@@ -1,9 +1,9 @@
-header {
+#header {
   position: relative;
   color: white;
 }
 
-header::after {
+#header :after {
   content:"";
   position:absolute;
   top:0;
@@ -17,6 +17,7 @@ header::after {
   background: linear-gradient(to right, #413DA4 0%, #4157A5 21%, #661784 100%);
   transform-origin: bottom left;
   z-index: -1;
+  overflow: hidden;
 }
 
 #food-input,

@@ -3,6 +3,27 @@
   padding: 0;
 }
 
+#header {
+  position: relative;
+}
+
+#header :after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  height: 200%;
+  width:110%;
+  transform: skewY(-2deg);
+  background: #413DA4;
+  background: -moz-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
+  background: -webkit-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
+  background: linear-gradient(to right, #413DA4 0%, #4157A5 21%, #661784 100%);
+  transform-origin: bottom left;
+  z-index: -1;
+  overflow: hidden;
+}
+
 h3 {
     font-size: 32px;
 }
