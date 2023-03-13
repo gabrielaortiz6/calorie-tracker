@@ -54,23 +54,6 @@ a:active {
     transition: opacity .5s;
 }
 
-a {
-  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-  cursor: pointer;
-  position: relative;
-}
-
-a:hover {
-  transform: scale(0.98);
-}
-
-a:active {
-  transform: scale(0.98);
-  box-shadow:3px 2px 22px 1px rgba(0, 0, 0, 0.24);
-    opacity: 0.5;
-    transition: opacity .5s;
-}
-
 @media screen and (min-width: 450px) {
 
   /* Styles for screens 450px and up */
@@ -111,7 +94,21 @@ a:active {
 @media screen and (max-width: 450px) {
 
   /* Styles for screens up to 450px */
-  .text-8xl {
+
+  /* TRIED TO FIX LANDING PAGE HEADER ISSUE BUT DIDN'T WORK */
+  header.hero {
+    text-align: left;
+    padding-left: 0px;
+  }
+
+#textshadow {
+    margin: auto;
+    text-align: center;
     font-size: 4rem;
+  }
+
+  p#currentDate.text-5xl {
+    font-size: 2rem;
+    text-align: center;
   }
 }
