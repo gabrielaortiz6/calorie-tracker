@@ -6,16 +6,43 @@ var foodInput = document.getElementById("food-type");
 console.log(foodInput);
 var currentDateText = $("#currentDay");
 var unitOptions = document.getElementById("unit-options");
+var foodIdFetch;
+
+// Selectors
+var enterBtn = document.getElementById("enter-btn");
+var proteinAppend = document.getElementById("protein-list");
+var carbAppend = document.getElementById("carbs-list");
+var fatAppend = document.getElementById("fats-list");
+var calorieAppend = document.getElementById("calories-list");
+var proteinTotalElement = document.getElementById("protein-total");
+var carbsTotalElement = document.getElementById("carbs-total");
+var fatsTotalElement = document.getElementById("fats-total");
+var caloriesTotalElement = document.getElementById("calories-total");
+var unitInput = document.getElementById("unit-input");
+var proteinAppend = document.getElementById("protein-total");
+var carbAppend = document.getElementById("carbs-total");
+var fatAppend = document.getElementById("fats-total");
+var calorieAppend = document.getElementById("calories-total");
+
+
+// Total nutrition count variables
+var totalProtein = localStorage.getItem("totalProtein") ? Number(localStorage.getItem("breakfast")) : 0;
+//TODO make our other totals like the above
+var totalCarbs = 0;
+var totalFat = 0;
+var totalCalories = 0;
+
+//TODO make other arrays like breakfast
+var breakfastArray = JSON.parse(localStorage.getItem("breakfast")) || [];
+var lunchArray = [];
+var dinnerArray = [];
+var snackArray = [];
+//TODO tie our arrays to both our display columns and local storage
 
 // DAYJS
 var currentDate = dayjs().format("dddd, MMMM D, YYYY");
 currentDateText.text(currentDate);
 
-// Total nutrition count variables
-var totalProtein = 0;
-var totalCarbs = 0;
-var totalFat = 0;
-var totalCalories = 0;
 
 // Initialize nutrient total elements
 var proteinTotalElement = document.getElementById("protein-total");
@@ -35,172 +62,108 @@ function updateName() {
   var storedName = localStorage.getItem("name");
   document.querySelector("#user-name").textContent = storedName;
 }
-
 updateName();
 
 // Submit button event listener for searching foods
 enterBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  var food = foodInput.value;
-
+  var quantityInput = document.getElementById("quantity-input");
+  var quantity = quantityInput.value;
+  var quantityInputNumber = Number(quantity);
   // Fetch API
+  // Make POST request to API with retrieved data
   fetch(
-    `https://api.edamam.com/api/food-database/v2/parser?ingr=${food}&app_id=${APP_ID}&app_key=${APP_KEY}`
+    `https://api.edamam.com/api/food-database/v2/nutrients?app_id=${APP_ID}&app_key=${APP_KEY}`,
+    {
+      method: "POST",
+      headers: new Headers({ "content-type": "application/json" }),
+      body: JSON.stringify({
+        ingredients: [
+          {
+            quantity: quantityInputNumber,
+            measureURI: document.getElementById("unit-options").value,
+            foodId: foodIdFetch,
+          },
+        ],
+      }),
+    }
   )
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-      var nutrients = data.hints[0].food.nutrients;
-      console.log(nutrients);
-      var protein = nutrients.PROCNT;
-      console.log("Protein: " + protein);
+      console.log(data);
+      var protein = data.totalNutrients.PROCNT.quantity;
+      var carbs = data.totalNutrients.CHOCDF.quantity;
+      var fat = data.totalNutrients.FAT.quantity;
+      var calories = data.calories;
 
-      //set to local storage
-      localStorage.setItem("totalProtein", protein)
-
-      var carbs = nutrients.CHOCDF;
-      console.log("Carbs: " + carbs);
-      //set to local storage
-      localStorage.setItem("totalCarbs", carbs)
-
-      var fat = nutrients.FAT;
-      console.log("Fats: " + fat);
-      //set to local storage
-      localStorage.setItem("totalFats", fat)
-
-      var calories = nutrients.ENERC_KCAL;
-      console.log("Calories for " + food + ": " + calories);
-      var breakfast = document.getElementById("breakfast").value;
-      var lunch = document.getElementById("lunch").value;
-      var dinner = document.getElementById("dinner").value;
-      var snack = document.getElementById("snack").value;
-
-      var foodInputTextNode = document.createTextNode(food);
-      localStorage.setItem("food-type", food);
-
-      var mealType = document.getElementById("meal-type").value;
-
-      // Conditions for where to put food
-      if (mealType === breakfast) {
-        var breakfastGroup = document.getElementById("breakfast-group");
-        var breakfastLI = document.createElement("li");
-        breakfastLI.appendChild(foodInputTextNode);
-        breakfastGroup.appendChild(breakfastLI);
-      } else if (mealType === lunch) {
-        var lunchGroup = document.getElementById("lunch-group");
-        var lunchLI = document.createElement("li");
-        lunchLI.appendChild(foodInputTextNode);
-        lunchGroup.appendChild(lunchLI);
-      } else if (mealType === dinner) {
-        var dinnerGroup = document.getElementById("dinner-group");
-        var dinnerLI = document.createElement("li");
-        dinnerLI.appendChild(foodInputTextNode);
-        dinnerGroup.appendChild(dinnerLI);
-      } else if (mealType === snack) {
-        var snackGroup = document.getElementById("snack-group");
-        var snackLI = document.createElement("li");
-        snackLI.appendChild(foodInputTextNode);
-        snackGroup.appendChild(snackLI);
-      } else {
-        alert("Please choose a meal catagory.");
-      }
-            // Hide food intake section
-            document.getElementById("food-intake").style.visibility = "hidden";
-            // Reset meal type section
-            document.getElementById("meal-type").selectedIndex = 0;
-            // Clear food type input field
-            foodInput.value = "";
+      // Update total nutrients and UI
+      updateNutrientInfo(protein, carbs, fat, calories);
+              // Hide food intake section
+              document.getElementById("food-intake").style.visibility = "hidden";
+              // Reset meal type section
+              document.getElementById("meal-type").selectedIndex = 0;
+              // Clear food type input field
+              foodInput.value = "";
+      
     })
-    .catch((error) => {
-      console.log(error);
-    });
+
+    .catch((error) => console.error(error));
 });
 
-// Selectors
-var enterBtn = document.getElementById("enter-btn");
-var proteinAppend = document.getElementById("protein-list");
-var carbAppend = document.getElementById("carbs-list");
-var fatAppend = document.getElementById("fats-list");
-var calorieAppend = document.getElementById("calories-list");
-var proteinTotalElement = document.getElementById("protein-total");
-var carbsTotalElement = document.getElementById("carbs-total");
-var fatsTotalElement = document.getElementById("fats-total");
-var caloriesTotalElement = document.getElementById("calories-total");
-var unitInput = document.getElementById("unit-input");
-var proteinAppend = document.getElementById("protein-total");
-var carbAppend = document.getElementById("carbs-total");
-var fatAppend = document.getElementById("fats-total");
-var calorieAppend = document.getElementById("calories-total");
 
-// Variables
-var totalProtein = 0;
-var totalCarbs = 0;
-var totalFat = 0;
-var totalCalories = 0;
-var units = unitInput.value;
 
-// Event listener for Enter button to accept units and quantity of food to accurately calculate nutrients
+// Event listener for Submit button to accept units and quantity of food to accurately calculate nutrients
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
   document.getElementById("food-intake").style.visibility = "visible";
-  var quantityInput = document.getElementById("quantity-input");
   var foodInput = document.getElementById("food-type");
   var foodInputFetch = foodInput.value;
   console.log(foodInputFetch);
-  var quantity = quantityInput.value;
+  var foodInputTextNode = document.createTextNode(foodInputFetch);
 
-  // Make sure quantityInput is a valid number
-  var quantityInputNumber = Number(quantity);
-  console.log(units);
-  console.log(quantityInputNumber);
+  var mealType = document.getElementById("meal-type").value;
+
+  // Conditions for where to put food
+  if (mealType === "breakfast") {
+    var breakfastGroup = document.getElementById("breakfast-group");
+    var breakfastLI = document.createElement("li");
+    breakfastLI.appendChild(foodInputTextNode);
+    breakfastGroup.appendChild(breakfastLI);
+  } else if (mealType === "lunch") {
+    var lunchGroup = document.getElementById("lunch-group");
+    var lunchLI = document.createElement("li");
+    lunchLI.appendChild(foodInputTextNode);
+    lunchGroup.appendChild(lunchLI);
+  } else if (mealType === "dinner") {
+    var dinnerGroup = document.getElementById("dinner-group");
+    var dinnerLI = document.createElement("li");
+    dinnerLI.appendChild(foodInputTextNode);
+    dinnerGroup.appendChild(dinnerLI);
+  } else if (mealType === "snack") {
+    var snackGroup = document.getElementById("snack-group");
+    var snackLI = document.createElement("li");
+    snackLI.appendChild(foodInputTextNode);
+    snackGroup.appendChild(snackLI);
+  } else {
+    alert("Please choose a meal catagory.");
+  }
 
   // Fetch the input of the users food
   fetch(
-    `https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${APP_KEY}&ingr=${foodInput.value}`
+    `https://api.edamam.com/api/food-database/v2/parser?app_id=${APP_ID}&app_key=${APP_KEY}&ingr=${foodInputFetch}`
   )
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
 
       // Retrieve food id, nutrients, and measurement URI from edamam API
-      var foodIdFetch = data.hints[0].food.foodId;
+      foodIdFetch = data.hints[0].food.foodId;
       console.log(foodIdFetch);
-      var protein = data.hints[0].food.nutrients.PROCNT;
-      var carbs = data.hints[0].food.nutrients.CHOCDF;
-      var fat = data.hints[0].food.nutrients.FAT;
-      var calories = data.hints[0].food.nutrients.ENERC_KCAL;
-
-      // Update total nutrients and UI
-      updateNutrientInfo(protein, carbs, fat, calories);
-
-      // Make POST request to API with retrieved data
-      fetch(
-        `https://api.edamam.com/api/food-database/v2/nutrients?app_id=${APP_ID}&app_key=${APP_KEY}`,
-        {
-          method: "POST",
-          headers: new Headers({ "content-type": "application/json" }),
-          body: JSON.stringify({
-            ingredients: [
-              {
-                quantity: quantityInputNumber,
-                measureURI: fillUnitOptions(),
-                foodId: foodIdFetch,
-              },
-            ],
-          }),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        });
-    })
-
-    .catch((error) => console.error(error));
-
+      fillUnitOptions(data.hints[0].measures);
+     });
 });
 
+// Updating Nutrition Information
 function updateNutrientInfo(protein, carbs, fat, calories) {
   if (protein >= 0) {
     var proteinListItem = proteinAppend.querySelector("li");
@@ -292,35 +255,21 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
     totalCalories += calories;
     caloriesTotalElement.textContent = "Calories: " + totalCalories;
   }
+    // Set to local storage
+    localStorage.setItem("totalProtein", totalProtein)
+    localStorage.setItem("totalFats", totalFat)
+    localStorage.setItem("totalCarbs", totalCarbs)
+    localStorage.setItem("totalProtein", totalCalories)
 }
 
-function fillUnitOptions() {
-  const foodTypeInput = document.getElementById('food-type');
-  const foodType = foodTypeInput.value;
-
-  fetch(
-    `https://api.edamam.com/api/food-database/v2/parser?ingr=${foodType}&app_id=${APP_ID}&app_key=${APP_KEY}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const measures = data.hints[0].measures;
-      const measureLabels = [];
-
-      for (let i = 0; i < measures.length; i++) {
-        const measureLabel = measures[i].label;
-        measureLabels.push(measureLabel);
-      }
-
-      const unitInput = document.getElementById('unit-options');
-      unitInput.innerHTML = '';
-      for (let i = 0; i < measureLabels.length; i++) {
-        const option = document.createElement('option');
-        option.value = measureLabels[i];
-        option.text = measureLabels[i];
-        unitInput.add(option);
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
+// Updating the units of measurements
+function fillUnitOptions(measures) {
+  const unitInput = document.getElementById("unit-options");
+  unitInput.innerHTML = "";
+  for (let i = 0; i < measures.length; i++) {
+    const option = document.createElement("option");
+    option.value = measures[i].uri;
+    option.text = measures[i].label;
+    unitInput.add(option);
+  }
 }
