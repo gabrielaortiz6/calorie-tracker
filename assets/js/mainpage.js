@@ -59,7 +59,7 @@ var snackArray = JSON.parse(localStorage.getItem("snack")) || [];
 //TODO tie our arrays to both our display columns and local storage
 
 // DAYJS
-var currentDate = dayjs().format('dddd, MMMM D, YYYY');
+var currentDate = dayjs().format("dddd, MMMM D, YYYY");
 currentDateText.text(currentDate);
 
 // Initialize nutrient total elements
@@ -76,9 +76,9 @@ var caloriesTotalElement = document.getElementById("calories-total");
 caloriesTotalElement.textContent = "Calories: " + totalCalories;
 
 //retrieving name
-function updateName () {
+function updateName() {
   var storedName = localStorage.getItem("name");
-  document.querySelector('#user-name').textContent = storedName;
+  document.querySelector("#user-name").textContent = storedName;
 }
 updateName();
 
@@ -121,7 +121,7 @@ function setMealColumns() {
 setMealColumns();
 
 // Submit button event listener for searching foods
-submitBtn.addEventListener("click", function (event) {
+enterBtn.addEventListener("click", function (event) {
   event.preventDefault();
   var quantityInput = document.getElementById("quantity-input");
   var quantity = quantityInput.value;

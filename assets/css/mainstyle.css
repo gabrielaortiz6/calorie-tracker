@@ -1,19 +1,15 @@
-* {
-  font-family: "Open Sans", "sans serif";
-}
-
 #header {
   position: relative;
-  /* color: rgb(11, 8, 8)1, 8, 8); */
+  color: white;
 }
 
 #header :after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
   height: 100%;
-  width: 110%;
+  width:110%;
   transform: skewY(-2deg);
   background: #413DA4;
   background: -moz-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
@@ -46,67 +42,54 @@
   display: flex;
   justify-content: center;
 }
-
-#add-calorie-btn {
+#add-calorie-btn{
   background: #f1eef2;
-  color: #2a0539;
-  line-height: 1.5rem;
-  font-size: 18px;
-}
+  color:#2a0539;
+  }
 
 @media screen and (min-width: 450px) {
-
   /* Styles for screens 450px and up */
   .container {
     max-width: 768px;
     margin: 0 auto;
   }
-
   .text-8xl {
     font-size: 6rem;
   }
 }
 
 @media screen and (min-width: 768px) {
-
   /* Styles for screens 768px and up */
   .container {
     max-width: 992px;
   }
-
   .text-8xl {
     font-size: 7rem;
   }
-
-  header {
+  header{
     padding: 2px;
   }
 }
 
 @media screen and (min-width: 992px) {
-
   /* Styles for screens 992px and up */
   .container {
     max-width: 1200px;
   }
-
   .text-8xl {
     font-size: 8rem;
   }
-
-  header {
+  header{
     padding: 2px;
   }
 }
 
 @media screen and (max-width: 450px) {
-
   /* Styles for screens up to 450px */
   .text-8xl {
     font-size: 4rem;
   }
-
-  header {
+  header{
     padding: 2px;
   }
 }

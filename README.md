@@ -2,9 +2,7 @@
 
 ## Description
 
-Our motivation for making this project was to help people achieve their nutritional and fitness goals without having to pay.
-
-We built this app because we understand the importance of maintaining or trying to improve your health. 
+Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
 Our calorie tracker is a web or mobile application that helps users track their daily calorie intake and expenditure. Upon opening the application, users will be prompted to enter their name.
 Once the user has entered their name, they can begin tracking their calorie intake by searching for foods in the app's database. The user can input the quantity of each food they consume, and the app will calculate the number of calories and Macros consumed based on the food's nutritional information.
@@ -16,14 +14,13 @@ add calories through food intake and deduct calories via exercise to obtain a da
 The biggest take away from this project was how to install an API in our website and how to write code to let us navigate through the 
 API.
 
-In the process of building this app, we learned to fetch data from various APIs to create more functional webpage that a user can interact with easily. 
 
 ## User Story
 
 ```
  AS a user
- I WANT to track the nutritional values of the food I eat and calories I burn exercising
- SO THAT I can keep track of nutritional goals
+ I WANT to track the nutrional values of the food I eat and calories I burn exercising
+ SO THAT I can keep track of nutrional goals
  ```
 
 ## Acceptance Criteria
