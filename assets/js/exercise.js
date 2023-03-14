@@ -135,6 +135,7 @@ $(document).ready(function () {
     retrieveMacros();
     retrieveTotalCalories();
     updateName();
+    retrieveStorage();
 
     // function for autocomplete
         $('#exercise-input').autocomplete({
