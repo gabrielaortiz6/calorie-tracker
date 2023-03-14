@@ -10,14 +10,15 @@ var foodIdFetch;
 var currentDay = dayjs().day();
 var storedDay = Number(localStorage.getItem("dayOfWeek"));
 
-// // Cleans the local storage and resets the tracker each new day
-// localStorage.setItem("dayOfWeek", currentDay);
-// function cleanStorage() {
-//   if (currentDay != storedDay) {
-//     localStorage.clear();
-//   }
-// }
-// cleanStorage(); 
+// Cleans the local storage and resets the tracker each new day
+function cleanStorage() {
+  storedDay = Number(localStorage.getItem("dayOfWeek"));
+  if (currentDay !== storedDay) {
+    localStorage.clear();
+    localStorage.setItem("dayOfWeek", currentDay);
+  }
+}
+cleanStorage(); 
 
 
 // Selectors
