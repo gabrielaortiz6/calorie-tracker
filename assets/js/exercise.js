@@ -110,8 +110,7 @@ var availableExercises = [
   ];
 
 $(document).ready(function () {
-    retrieveStorage();
-    
+
     //retrieving name
     function updateName () {
         var storedName = localStorage.getItem("name");
@@ -177,11 +176,6 @@ $(document).ready(function () {
         });
     };
 
-    // function loadFormData() {
-    //     var savedTableData = JSON.parse(localStorage.getItem("user inputs"));
-
-    // }
-
     function addRow(exerciseLabel, duration, calories) {
            // Create a new table row
            var newRow = document.createElement('tr');
@@ -215,9 +209,6 @@ $(document).ready(function () {
 
            // Append the new row to the table
            exerciseTable.appendChild(newRow);
-
-           var tableData = 
-           localStorage.setItem("table", exercisesArray);
     }
 
     //function for processing and storing the inputs
@@ -241,8 +232,6 @@ $(document).ready(function () {
         //empties the user input area after submitting input with click
         userExerciseInput.val("");
         userDurationInput.val("");
-
-        localStorage.setItem('table', document.getElementById("exercise-list").innerHTML);
     }
 
     // exercise and duration will be parameters
@@ -276,6 +265,7 @@ $(document).ready(function () {
             //subtracts caloriesBurned from storedCalories
              var totalCalories = storedCalories -= caloriesBurned;
              caloriesEl.textContent = "Total Calories: " + totalCalories;
+
         });
     };
 

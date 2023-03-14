@@ -25,7 +25,7 @@
 </head>
 
 
-<header id="header" class="text-white text-2xl flex justify-between mb-0 p-5">
+<header id="header" class="text-white text-2xl flex justify-between p-5">
   <div class="flex flex-col items-center justify-center text-white text-2xl">
     <p id="user-name" class="text-white text-2xl mb-4 mt-4"></p>
     <p class="mb-8 underline">Exercises</p>
@@ -37,19 +37,19 @@
   <!--Button that takes you back to Calorie Input (Main) Page-->
   <div>
     <a href="mainpage.html"><button
-        class="inline bg-white hover:bg-gray-100
-          text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded
-          shadow"
+        class="mt-7 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 mr-10 px-4 border border-gray-400 rounded shadow"
         id="add-calorie-btn">Add Calories</button></a>
   </div>
 </header>
 
+<!-- Providing space between -->
+
 <!--Input Form-->
 <body class="bg-gray-300 flex flex-col">
-  <form class="exercise-form flex flex-col justify-center items-center">
+  <form class="exercise-form flex flex-col mt-10  justify-center items-center">
     <!--Enter Exercise Input with Autocomplete-->
     <div class="ui-widget">
-      <label for="exercise-input" class="text-center block mb-2 font-semibold text-gray-900 dark:text-white">Exercise List: </label>
+      <label for="exercise-input" class="text-center block mb-2 font-semibold text-gray-900 dark:text-white"><h3>Exercise List:</h3> </label>
       <input id="exercise-input" type="text" placeholder="Start typing to see options" required class="max-w-xs p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
     <!--Enter Duration of Exercise Input-->
@@ -70,7 +70,7 @@
   </form>
 
   <!--Table for Exercise List to Display-->
-  <div id="exercise-list" class="exercise-list mt-4 mb-8">
+  <div class="exercise-list mt-4 mb-8">
     <div class="exercise-list relative overflow-x-auto shadow-md sm:rounded-lg">
       <table id="exercise-table" class="table-auto sm:w-auto text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -88,22 +88,22 @@
           </tr>
         </thead>
         <!--Table Body-->
-        <tbody id="table-body">
+        <tbody class="table-body">
           <!--JavaScript will insert user inputs here-->
         </tbody>
       </table>
     </div>
   </div>
   <div>
-    <h6 class="text-xl daily-totals flex justify-center p">Daily totals:</h6>
+    <h6 class="daily-totals flex justify-center mt-10">Daily totals:</h6>
   </div>
   <section class="macros flex justify-center">
 
     <ul>
-      <li class="ml-8 text-xl"><span id="protein-total">Proteins: </span></li>
-      <li class="ml-8 text-xl"><span id="carbs-total">Carbs: </span></li>
-      <li class="ml-8 text-xl"><span id="fats-total">Fats: </span></li>
-      <li class="ml-8 text-xl"><span id="calories"></span></li>
+      <li class="ml-8"><span id="protein-total">Proteins: </span></li>
+      <li class="ml-8"><span id="carbs-total">Carbs: </span></li>
+      <li class="ml-8"><span id="fats-total">Fats: </span></li>
+      <li class="ml-8"><span id="calories"></span></li>
 
     </ul>
   </section>

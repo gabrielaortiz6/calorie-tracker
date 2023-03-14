@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet"
+    <!-- <link rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous" />
+      crossorigin="anonymous" /> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet" />
     <!--DayJS-->
@@ -21,12 +21,15 @@
   </head>
   <!--Header-->
   <header id="header" class="flex justify-between p-8 header">
+
+
+
     <div class="flex flex-col items-center justify-center text-white text-2xl">
       <p id="user-name" class="text-white text-2xl mb-4"></p>
       <p class="mb-8 underline">Calorie Tracker</p>
     </div>
     <!--Current date display-->
-    <p id="currentDay" class="date text-xl text-white"></p>
+    <p id="currentDay" class="date text-2xl text-white"></p>
 
     <div class="inline exercise-btn">
       <!--Button that takes you Exercise Input (Main) Page-->
@@ -35,10 +38,12 @@
           shadow" id="add-calorie-btn">Add Exercise</button></a>
     </div>
   </header>
+</br></br></br>
 
-  <!-- Body of page -->
+
+<!-- Body of page -->
   <body class="bg-gray-300">
-    <form class="select-meal-type flex flex-col justify-center mb-8 items-center text-xl">
+    <form class="select-meal-type flex flex-col justify-center items-center text-xl">
       <!--Select Type of Meal-->
       <label for="meal-type" class="text-xl block mb-2 text-sm font-medium text-gray-900
         dark:text-white"><h3>Select a type of meal</h3></label>
@@ -55,7 +60,8 @@
         <option id="snack" value="snack">Snack</option>
       </select>
       <!--Input Food-->
-      <div class="block mb-6 pt-10">
+
+      <div class="block mb-6 pt-16">
         <label for="food-input" class="text-xl text-center block mb-2 text-sm
           font-medium text-gray-900 dark:text-white"><h3>Enter food:</h3></label>
         <input type="text" id="food-type" class="text-center bg-gray-50 border
@@ -72,7 +78,7 @@
         Submit
       </button>
       <!--Food Intake Amount-->
-      <div id="food-intake" class="block mt-2 mb-6 pt-8 flex flex-col text-xl invisible justify-center">
+      <div id="food-intake" class="block mb-6 pt-16 flex flex-col text-xl invisible">
         <!-- Label for Enter your food quantity -->
         <label for="food-input" class="text-center block mb-2 text-sm
           font-medium text-gray-900 dark:text-white"><h3>Enter your food
