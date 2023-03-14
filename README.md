@@ -56,9 +56,9 @@ APIS used for this project:
 * [Edamam API](https://www.edamam.com/) for the nutritional values.
 
 ### SCREENSHOTS
-![Screen Shot 2023-02-28 at 9 48 27 PM](https://user-images.githubusercontent.com/122922799/222032766-c28b32e5-7a3f-4384-9997-e9b07ce81b6f.png)
+![image](https://user-images.githubusercontent.com/117334322/224877506-bd51fad5-c728-4673-a00e-d12f8b348c1c.png)
 
-![Screen Shot 2023-02-28 at 9 48 19 PM](https://user-images.githubusercontent.com/122922799/222032463-7fee02f6-895e-462a-8e06-80bce1b76d61.png)
+![image](https://user-images.githubusercontent.com/117334322/224877537-5fe77572-f190-4266-a03b-8991c0314463.png)
 
 ### LINK TO DEPLOYED SITE
 
