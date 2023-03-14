@@ -232,6 +232,8 @@ $(document).ready(function () {
         //empties the user input area after submitting input with click
         userExerciseInput.val("");
         userDurationInput.val("");
+
+        localStorage.setItem('table', document.getElementById("exercise-list").innerHTML);
     }
 
     // exercise and duration will be parameters
@@ -265,7 +267,6 @@ $(document).ready(function () {
             //subtracts caloriesBurned from storedCalories
              var totalCalories = storedCalories -= caloriesBurned;
              caloriesEl.textContent = "Total Calories: " + totalCalories;
-
         });
     };
 

@@ -2,20 +2,20 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Our motivation for making this project was to help people achieve their nutritional and fitness goals without having to pay.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+We built this app because we understand the importance of maintaining or trying to improve your health. 
 
+This Calorie Tracker app helps the user have both calorie/macro intake and calories burned on the same application, which is free to access.
+
+In the process of building this app, we learned to fetch data from various APIs to create more functional webpage that a user can interact with easily. 
 
 ## User Story
 
 ```
  AS a user
- I WANT to track the nutrional values of the food I eat and calories I burn exercising
- SO THAT I can keep track of nutrional goals
+ I WANT to track the nutritional values of the food I eat and calories I burn exercising
+ SO THAT I can keep track of nutritional goals
  ```
 
 ## Acceptance Criteria
