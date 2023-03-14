@@ -24,25 +24,30 @@ var carbAppend = document.getElementById("carbs-total");
 var fatAppend = document.getElementById("fats-total");
 var calorieAppend = document.getElementById("calories-total");
 
+// Total nutrition count variables and get storage
+var totalProtein = localStorage.getItem("totalProtein")
+  ? Number(localStorage.getItem("totalProtein"))
+  : 0;
+var totalCarbs = localStorage.getItem("totalCarbs")
+  ? Number(localStorage.getItem("totalCarbs"))
+  : 0;
+var totalFat = localStorage.getItem("totalFats")
+  ? Number(localStorage.getItem("totalFats"))
+  : 0;
+var totalCalories = localStorage.getItem("totalCalories")
+  ? Number(localStorage.getItem("totalCalories"))
+  : 0;
 
-// Total nutrition count variables
-var totalProtein = localStorage.getItem("totalProtein") ? Number(localStorage.getItem("breakfast")) : 0;
-//TODO make our other totals like the above
-var totalCarbs = 0;
-var totalFat = 0;
-var totalCalories = 0;
-
-//TODO make other arrays like breakfast
+// Get arrays for meals from storage
 var breakfastArray = JSON.parse(localStorage.getItem("breakfast")) || [];
-var lunchArray = [];
-var dinnerArray = [];
-var snackArray = [];
+var lunchArray = JSON.parse(localStorage.getItem("lunch")) || [];
+var dinnerArray = JSON.parse(localStorage.getItem("dinner")) || [];
+var snackArray = JSON.parse(localStorage.getItem("snack")) || [];
 //TODO tie our arrays to both our display columns and local storage
 
 // DAYJS
 var currentDate = dayjs().format("dddd, MMMM D, YYYY");
 currentDateText.text(currentDate);
-
 
 // Initialize nutrient total elements
 var proteinTotalElement = document.getElementById("protein-total");
@@ -63,6 +68,44 @@ function updateName() {
   document.querySelector("#user-name").textContent = storedName;
 }
 updateName();
+
+function setMealColumns() {
+  // Breakfast Array Loop and create an item for each string in the breakfast column
+  for (var x = 0; x < breakfastArray.length; x++) {
+    var breakfastGroup = document.getElementById("breakfast-group");
+    var breakfastLI = document.createElement("li");
+    var breakfastArrayLoop = breakfastArray[x];
+    var breakfastTextNode = document.createTextNode(breakfastArrayLoop);
+    breakfastLI.appendChild(breakfastTextNode);
+    breakfastGroup.appendChild(breakfastLI);
+  }
+  for (var x = 0; x < lunchArray.length; x++) {
+    var lunchGroup = document.getElementById("lunch-group");
+    var lunchLI = document.createElement("li");
+    var lunchArrayLoop = lunchArray[x];
+    var lunchTextNode = document.createTextNode(lunchArrayLoop);
+    lunchLI.appendChild(lunchTextNode);
+    lunchGroup.appendChild(lunchLI);
+  }
+  for (var x = 0; x < dinnerArray.length; x++) {
+    var dinnerGroup = document.getElementById("dinner-group");
+    var dinnerLI = document.createElement("li");
+    var dinnerArrayLoop = dinnerArray[x];
+    var dinnerTextNode = document.createTextNode(dinnerArrayLoop);
+    dinnerLI.appendChild(dinnerTextNode);
+    dinnerGroup.appendChild(dinnerLI);
+  }
+  for (var x = 0; x < snackArray.length; x++) {
+    var snackGroup = document.getElementById("snack-group");
+    var snackLI = document.createElement("li");
+    var snackArrayLoop = snackArray[x];
+    var snackTextNode = document.createTextNode(snackArrayLoop);
+    snackLI.appendChild(snackTextNode);
+    snackGroup.appendChild(snackLI);
+  }
+}
+
+setMealColumns();
 
 // Submit button event listener for searching foods
 enterBtn.addEventListener("click", function (event) {
@@ -91,62 +134,72 @@ enterBtn.addEventListener("click", function (event) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      var protein = data.totalNutrients.PROCNT.quantity;
-      var carbs = data.totalNutrients.CHOCDF.quantity;
-      var fat = data.totalNutrients.FAT.quantity;
-      var calories = data.calories;
+      var protein = parseInt(data.totalNutrients.PROCNT.quantity);
+      var carbs = parseInt(data.totalNutrients.CHOCDF.quantity);
+      var fat = parseInt(data.totalNutrients.FAT.quantity);
+      var calories = parseInt(data.calories);
 
       // Update total nutrients and UI
       updateNutrientInfo(protein, carbs, fat, calories);
-              // Hide food intake section
-              document.getElementById("food-intake").style.visibility = "hidden";
-              // Reset meal type section
-              document.getElementById("meal-type").selectedIndex = 0;
-              // Clear food type input field
-              foodInput.value = "";
-      
+      // Hide food intake section
+      document.getElementById("food-intake").style.visibility = "hidden";
+      // Reset meal type section
+      document.getElementById("meal-type").selectedIndex = 0;
+      // Clear food type input field
+      foodInput.value = "";
     })
 
     .catch((error) => console.error(error));
 });
 
-
-
 // Event listener for Submit button to accept units and quantity of food to accurately calculate nutrients
 submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  document.getElementById("food-intake").style.visibility = "visible";
-  var foodInput = document.getElementById("food-type");
-  var foodInputFetch = foodInput.value;
-  console.log(foodInputFetch);
-  var foodInputTextNode = document.createTextNode(foodInputFetch);
 
   var mealType = document.getElementById("meal-type").value;
+  var foodInput = document.getElementById("food-type");
+  var foodInputFetch = foodInput.value;
+  var foodInputTextNode = document.createTextNode(foodInputFetch);
 
   // Conditions for where to put food
+  if (!mealType) {
+    alert("Please choose a meal catagory.");
+    return;
+  }
+  if (!foodInputFetch) {
+    alert("Please enter a food.");
+    return;
+  }
   if (mealType === "breakfast") {
     var breakfastGroup = document.getElementById("breakfast-group");
     var breakfastLI = document.createElement("li");
     breakfastLI.appendChild(foodInputTextNode);
     breakfastGroup.appendChild(breakfastLI);
+    breakfastArray.push(foodInputFetch);
+    localStorage.setItem("breakfast", JSON.stringify(breakfastArray));
   } else if (mealType === "lunch") {
     var lunchGroup = document.getElementById("lunch-group");
     var lunchLI = document.createElement("li");
     lunchLI.appendChild(foodInputTextNode);
     lunchGroup.appendChild(lunchLI);
+    lunchArray.push(foodInputFetch);
+    localStorage.setItem("lunch", JSON.stringify(lunchArray));
   } else if (mealType === "dinner") {
     var dinnerGroup = document.getElementById("dinner-group");
     var dinnerLI = document.createElement("li");
     dinnerLI.appendChild(foodInputTextNode);
     dinnerGroup.appendChild(dinnerLI);
+    dinnerArray.push(foodInputFetch);
+    localStorage.setItem("dinner", JSON.stringify(dinnerArray));
   } else if (mealType === "snack") {
     var snackGroup = document.getElementById("snack-group");
     var snackLI = document.createElement("li");
     snackLI.appendChild(foodInputTextNode);
     snackGroup.appendChild(snackLI);
-  } else {
-    alert("Please choose a meal catagory.");
+    snackArray.push(foodInputFetch);
+    localStorage.setItem("snack", JSON.stringify(snackArray));
   }
+  document.getElementById("food-intake").style.visibility = "visible";
 
   // Fetch the input of the users food
   fetch(
@@ -160,7 +213,7 @@ submitBtn.addEventListener("click", function (event) {
       foodIdFetch = data.hints[0].food.foodId;
       console.log(foodIdFetch);
       fillUnitOptions(data.hints[0].measures);
-     });
+    });
 });
 
 // Updating Nutrition Information
@@ -255,11 +308,11 @@ function updateNutrientInfo(protein, carbs, fat, calories) {
     totalCalories += calories;
     caloriesTotalElement.textContent = "Calories: " + totalCalories;
   }
-    // Set to local storage
-    localStorage.setItem("totalProtein", totalProtein)
-    localStorage.setItem("totalFats", totalFat)
-    localStorage.setItem("totalCarbs", totalCarbs)
-    localStorage.setItem("totalProtein", totalCalories)
+  // Set to local storage
+  localStorage.setItem("totalProtein", totalProtein);
+  localStorage.setItem("totalFats", totalFat);
+  localStorage.setItem("totalCarbs", totalCarbs);
+  localStorage.setItem("totalCalories", totalCalories);
 }
 
 // Updating the units of measurements
