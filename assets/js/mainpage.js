@@ -20,7 +20,6 @@ function cleanStorage() {
 }
 cleanStorage(); 
 
-
 // Selectors
 var enterBtn = document.getElementById("enter-btn");
 var proteinAppend = document.getElementById("protein-list");
