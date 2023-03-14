@@ -110,7 +110,8 @@ var availableExercises = [
   ];
 
 $(document).ready(function () {
-
+    retrieveStorage();
+    
     //retrieving name
     function updateName () {
         var storedName = localStorage.getItem("name");
@@ -176,6 +177,11 @@ $(document).ready(function () {
         });
     };
 
+    // function loadFormData() {
+    //     var savedTableData = JSON.parse(localStorage.getItem("user inputs"));
+
+    // }
+
     function addRow(exerciseLabel, duration, calories) {
            // Create a new table row
            var newRow = document.createElement('tr');
@@ -209,6 +215,9 @@ $(document).ready(function () {
 
            // Append the new row to the table
            exerciseTable.appendChild(newRow);
+
+           var tableData = 
+           localStorage.setItem("table", exercisesArray);
     }
 
     //function for processing and storing the inputs
