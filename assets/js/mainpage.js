@@ -71,6 +71,7 @@ enterBtn.addEventListener("click", function (event) {
 
       var calories = nutrients.ENERC_KCAL;
       console.log("Calories for " + food + ": " + calories);
+      localStorage.setItem("totalCalories", calories);
       var breakfast = document.getElementById("breakfast").value;
       var lunch = document.getElementById("lunch").value;
       var dinner = document.getElementById("dinner").value;
