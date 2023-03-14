@@ -6,14 +6,23 @@
 #header {
   position: relative;
 }
+#add-calorie-btn{
+background: #f1eef2;
+color:#2a0539;
+}
+.table-row{
+ background-color: #bca8c3 ;
+ color: black;
+ margin-bottom: 10px;
+}
 
 #header :after {
   content:"";
   position:absolute;
   top:0;
   left:0;
-  height: 200%;
-  width:110%;
+  height: 100%;
+  width: 110%;
   transform: skewY(-2deg);
   background: #413DA4;
   background: -moz-linear-gradient(left, #413DA4 0%, #4157A5 21%, #661784 100%);
@@ -25,7 +34,8 @@
 }
 
 h3 {
-    font-size: 32px;
+    font-size: 22px;
+    font-weight: 200;
 }
 
 td {
@@ -50,6 +60,7 @@ th {
   justify-content: center;
   justify-items: center;
   margin: auto;
+  margin-top: 10px;
 }
 
 #nameInput {
@@ -63,6 +74,7 @@ th {
 
 .macros { 
     list-style-type: none;
+    margin-top: 10px;
 }
 
 .ui-autocomplete {
