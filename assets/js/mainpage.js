@@ -133,11 +133,13 @@ enterBtn.addEventListener("click", function (event) {
   )
     .then((response) => response.json())
     .then((data) => {
+
       console.log(data);
       var protein = parseInt(data.totalNutrients.PROCNT.quantity);
       var carbs = parseInt(data.totalNutrients.CHOCDF.quantity);
       var fat = parseInt(data.totalNutrients.FAT.quantity);
       var calories = parseInt(data.calories);
+
 
       // Update total nutrients and UI
       updateNutrientInfo(protein, carbs, fat, calories);

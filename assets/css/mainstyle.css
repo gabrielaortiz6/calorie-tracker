@@ -8,7 +8,7 @@
   position:absolute;
   top:0;
   left:0;
-  height: 155%;
+  height: 100%;
   width:110%;
   transform: skewY(-2deg);
   background: #413DA4;
@@ -42,7 +42,10 @@
   display: flex;
   justify-content: center;
 }
-
+#add-calorie-btn{
+  background: #f1eef2;
+  color:#2a0539;
+  }
 
 @media screen and (min-width: 450px) {
   /* Styles for screens 450px and up */
@@ -63,6 +66,9 @@
   .text-8xl {
     font-size: 7rem;
   }
+  header{
+    padding: 2px;
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -73,11 +79,17 @@
   .text-8xl {
     font-size: 8rem;
   }
+  header{
+    padding: 2px;
+  }
 }
 
 @media screen and (max-width: 450px) {
   /* Styles for screens up to 450px */
   .text-8xl {
     font-size: 4rem;
+  }
+  header{
+    padding: 2px;
   }
 }
