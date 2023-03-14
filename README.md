@@ -6,7 +6,15 @@ Our motivation for making this project was to help people achieve their nutritio
 
 We built this app because we understand the importance of maintaining or trying to improve your health. 
 
-This Calorie Tracker app helps the user have both calorie/macro intake and calories burned on the same application, which is free to access.
+Our calorie tracker is a web or mobile application that helps users track their daily calorie intake and expenditure. Upon opening the application, users will be prompted to enter their name.
+Once the user has entered their name, they can begin tracking their calorie intake by searching for foods in the app's database. The user can input the quantity of each food they consume, and the app will calculate the number of calories and Macros consumed based on the food's nutritional information.
+In addition to tracking calorie intake, the app also allows users to track their exercise and physical activity. Users can select from a list of common exercises. The app will deduct the number of calories burned during the exercise from the user's daily calorie intake, providing an accurate representation of the user's net calorie intake for the day.
+Our motivation for this project was to promote to promote a healthy lifestyle.  We wanted to make an app that we could keep on building upon to add more features in the future.
+We built this project because we wanted to make a real world app that focus' on an important issue (healthy lifestyle).
+This program lets the user input their daily total of foods and then lets them add in their exercise for the day.  In turn, they will be able to
+add calories through food intake and deduct calories via exercise to obtain a daily total calorie count.
+The biggest take away from this project was how to install an API in our website and how to write code to let us navigate through the 
+API.
 
 In the process of building this app, we learned to fetch data from various APIs to create more functional webpage that a user can interact with easily. 
 
