@@ -1,3 +1,8 @@
+
+* { 
+  font-family: "Open Sans", "sans serif"; 
+}
+
 #header {
   position: relative;
   color: white;
@@ -42,10 +47,15 @@
   display: flex;
   justify-content: center;
 }
-#add-calorie-btn{
+
+#add-calorie-btn {
   background: #f1eef2;
-  color:#2a0539;
-  }
+  color: #2a0539;
+  line-height: 1.5rem;
+  font-size: 18px;
+  font-weight: 500
+}
+
 
 @media screen and (min-width: 450px) {
   /* Styles for screens 450px and up */
